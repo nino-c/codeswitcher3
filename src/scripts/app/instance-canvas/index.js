@@ -1,5 +1,5 @@
 import 'angular';
-//import '../services';
+import './instance-canvas.scss';
 
 
 import InstanceCanvasController from './instance-canvas.controller';

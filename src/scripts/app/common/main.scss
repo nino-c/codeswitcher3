@@ -1,0 +1,19 @@
+
+.panel-bottom {
+    position: fixed;
+    bottom: 0px;
+    padding: 5em;
+
+}
+
+.button-huge {
+    transform: scale(2);
+    //blend-mode: difference;
+    mix-blend-mode: difference;
+    //font-size: 24px;
+
+    md-icon {
+        mix-blend-mode: difference;
+    }
+
+}

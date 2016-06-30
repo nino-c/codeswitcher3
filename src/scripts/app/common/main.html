@@ -1,12 +1,12 @@
-<div layout="column" ng-init="$ctrl.init()">
+<div layout="row" ng-init="$ctrl.init()">
 
-    <section layout="row" flex>
+    <div layout="row">
         <md-toolbar>
             <div layout="row" layout-align="start center"
-                layout-wrap layout-padding>
+                layout-wrap>
 
                 <div class="toolbar-title"
-                    ui-sref="app.home" flex>%%Apps at an Exhibition</div>
+                    ui-sref="app.home" flex>Apps at an Exhibition</div>
 
                 <md-button class="md-button pull-right" flex="nogrow"
                     ng-cloak ui-sref="app.login"
@@ -19,12 +19,13 @@
             </div>
 
         </md-toolbar>
+
         <md-content>
             <ui-view></ui-view>
         </md-content>
 
-    </section>
-    <md-sidenav md-is-open="true"
+    </div>
+    <md-sidenav md-is-open="false"
         class="md-sidenav-right md-whiteframe-4dp"
         md-component-id="right">
         <md-content layout="column" layout-padding>

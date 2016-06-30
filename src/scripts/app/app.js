@@ -58,10 +58,10 @@ window.app = angular.module('app', [
         $resourceProvider, $mdIconProvider) {
 
         $mdThemingProvider.theme('default')
-            .primaryPalette('blue-grey')
+            .primaryPalette('grey')
             .accentPalette('orange');
 
-        $mdIconProvider.viewBoxSize = 16;
+        $mdIconProvider.viewBoxSize = 24;
         $urlRouterProvider.otherwise('/app/home')
 
         $stateProvider.state('app', {
@@ -72,11 +72,11 @@ window.app = angular.module('app', [
                         controllerAs: '$ctrl',
                         templateUrl: '/templates/common/main.html'
                     },
-                    'toolbar@app': {
-                        controller: 'ToolbarController',
-                        controllerAs: 'ctrl',
-                        templateUrl: '/templates/views/toolbar.html'
-                    },
+                    // 'toolbar@app': {
+                    //     controller: 'ToolbarController',
+                    //     controllerAs: 'ctrl',
+                    //     templateUrl: '/templates/views/toolbar.html'
+                    // },
                     'panel@app': {
                         controller: 'PanelController',
                         controllerAs: 'ctrl',

@@ -1,9 +1,9 @@
 import 'angular';
 import 'angular-ui-router';
 
-import './home.scss';
+import './main.scss';
+import './header.scss';
 
-//import mainComponent from './main.component';
 import MainController from './main.controller';
 import PanelController from './panel.controller';
 import ToolbarController from './toolbar.controller';

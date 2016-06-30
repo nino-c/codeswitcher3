@@ -67,7 +67,7 @@ window.app = angular.module('app', [
                 .primaryPalette('blue-grey')
                 .accentPalette('orange');
 
-        $mdIconProvider.viewBoxSize = 16;
+        $mdIconProvider.viewBoxSize = 24;
         $urlRouterProvider.otherwise('/app/home')
 
         $stateProvider.state('app', {

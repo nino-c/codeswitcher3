@@ -1,0 +1,66 @@
+.canvas-full {
+    z-index: -1000;
+    display: block;
+    position: fixed;
+    left: 0px;
+    width: 100%;
+    background: transparent;
+    padding: 0px;
+    top: 0px;
+    height: 100%;
+}
+
+.canvas-inline {
+    z-index: -1000;
+    display: block;
+    width: 90%;
+    height: 90%;
+    margin: auto;
+    border: 1px solid #cccccc;
+    background: transparent;
+    padding: 0px;
+}
+
+#big-canvas {
+    @extend .canvas-full;
+    //top: 70px;
+    top: 0px;
+    height: 100%;
+    //calc(~"100% - 70px");
+    // top: 0px;
+    // height: 100%;
+}
+
+.display-canvas {
+    @extend .canvas-full;
+    top: 70px;
+}
+
+#bg-canvas {
+    @extend .canvas-full;
+    top: 0px;
+    height: 100%;
+}
+
+.canvas-fullscreen {
+    @extend .canvas-full;
+    top: 0px;
+    height: 100%;
+}
+
+.canvas-fullscreen-under-toolbar {
+    @extend .canvas-full;
+    top: 70px;
+    //height: calc(~"100% - 70px");
+}
+
+.feature-display {
+    position: fixed;
+    color: rgba(50,50,50,0.8);
+    top: 90px;
+    left: 30px;
+    padding: 10px;
+    background-color: rgba(240, 240, 240, 0.3);
+    border: 1px solid #eeeeee;
+    border-radius: 2px;
+}
