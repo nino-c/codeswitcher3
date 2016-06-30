@@ -1,0 +1,58 @@
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+
+html, body {
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 1.62em;
+}
+
+body {
+    color: $color-3;
+    font-family: 'Roboto' !important;
+    height: 100%;
+    background-color: transparent;
+}
+
+h1, h2, h3, h4, h5 {
+    margin-bottom: 0.62em;
+    margin-top: auto;
+}
+
+
+// md-card-content {
+//     div {
+//         line-height: 1.6em;
+//     }
+// }
+//
+//
+// md-card-content, md-content {
+//     line-height: 1.62em;
+// }
+
+
+
+a {
+    color: $color-4;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a:hover {
+    color: $color-5;
+}
+
+canvas {
+    display: block;
+}
+
+// scss-lint:disable ImportantRule, SingleLinePerSelector, SelectorFormat
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+// scss-lint:enable ImportantRule, SingleLinePerSelector, SelectorFormat

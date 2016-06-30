@@ -1,0 +1,45 @@
+<div layout="column" ng-init="$ctrl.init()">
+
+    <section layout="row" flex>
+        <md-toolbar>
+            <div layout="row" layout-align="start center"
+                layout-wrap layout-padding>
+
+                <div class="toolbar-title"
+                    ui-sref="app.home" flex>%%Apps at an Exhibition</div>
+
+                <md-button class="md-button pull-right" flex="nogrow"
+                    ng-cloak ui-sref="app.login"
+                    ng-if="!userLoggedIn">Log in</md-button>
+
+                <md-button class="md-button pull-right" flex="nogrow"
+                    ng-cloak ng-click="ctrl.logout()"
+                    ng-if="userLoggedIn">Log out</md-button>
+
+            </div>
+
+        </md-toolbar>
+        <md-content>
+            <ui-view></ui-view>
+        </md-content>
+
+    </section>
+    <md-sidenav md-is-open="true"
+        class="md-sidenav-right md-whiteframe-4dp"
+        md-component-id="right">
+        <md-content layout="column" layout-padding>
+
+            <div ui-view="panel-content"></div>
+            <div ui-view="panel-buttons"></div>
+
+        </md-content>
+    </md-sidenav>
+
+
+
+
+</div>
+
+
+<app-instance-canvas current-instance-id="$ctrl.currentInstanceId" />
+<!-- <instance-canvas current-instance-id="$ctrl.currentInstanceId" /> -->

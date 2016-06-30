@@ -1,0 +1,121 @@
+<div layout="row" layout-align="start center" layout-wrap>
+
+    <div class="toolbar-title" ui-sref="app.home" flex>Apps at an Exhibition</div>
+
+    <md-button class="md-button pull-right" flex="nogrow"
+        ng-cloak ui-sref="app.login"
+        ng-if="!userLoggedIn">Log in</md-button>
+
+    <md-button class="md-button pull-right" flex="nogrow"
+        ng-cloak ng-click="ctrl.logout()"
+        ng-if="userLoggedIn">Log out</md-button>
+
+</div>
+
+<!-- <md-toolbar md-whiteframe="3" ng-cloak ng-show="false">
+    <div id="top-toolbar" layout="row" layout-align="center center">
+
+        <span class="sub-brand" ui-sref="app.home" flex="grow">
+            <span flex hide-xs>Apps at an Exhibition</span>
+            <span flex hide-xs>::</span>
+            <span class="proposition" hide-xs>$(\forall x \in A)\space( \exists y)\space y = E(x)$</span>
+            <span class="device-xs" flex hide-gt-xs>Apps at an Exhibition</span>
+        </span>
+
+        <span flex="none"> -->
+
+            <!-- {% if user.is_authenticated %}
+            <md-menu>
+                <md-button ng-click="$mdOpenMenu()">
+                    <img src="{% thumbnail user.profile.picture|default:'default_profile.png' 30x30 crop %}" class="avatar" />
+                    {{ user.get_full_name|truncatechars:20 }}
+                    <span class="caret"></span>
+                </md-button>
+                <md-menu-content>
+                  <md-menu-item>
+                      <md-button href="{% url 'profiles:show_self' %}">Profile</md-button>
+                  </md-menu-item>
+                  <md-menu-item>
+                      <md-button href="{% url 'accounts:logout' %}">Logout</md-button>
+                  </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+            {% endif %} -->
+
+            <!-- {% if not user.is_authenticated %} -->
+            <!-- <md-button class="md-button pull-right" flex
+                ng-cloak ui-sref="app.login"
+                ng-if="!userLoggedIn">Log in</md-button>
+
+            <md-button class="md-button pull-right" flex
+                ng-cloak ng-click="ctrl.logout()"
+                ng-if="userLoggedIn">Log out</md-button> -->
+
+            <!-- <md-button class="md-small" ng-cloak ng-href="{% url 'accounts:signup' %}" role="button">Register</md-button> -->
+            <!-- {% endif %} -->
+<!--
+        </span>
+
+    </div>
+</md-toolbar> -->
+
+<!-- <md-toolbar md-whiteframe="3" ng-cloak> -->
+
+<!-- <md-fab-toolbar md-open="ctrl.menu.isOpen" count="ctrl.menu.count"
+    md-direction="right" class="md-hue-1" md-scroll-shrink>
+
+    <md-fab-trigger class="align-with-text">
+      <md-button aria-label="menu" class="md-fab md-primary md-mini">
+        <md-icon md-svg-src="/assets/img/icons/menu.svg"></md-icon>
+      </md-button>
+    </md-fab-trigger>
+
+    <md-toolbar>
+
+      <md-fab-actions class="md-toolbar-tools" layout="row" layout-align="end center">
+
+        <md-button aria-label="comment" class="md-icon-button">
+          <md-icon md-svg-src="img/icons/ic_comment_24px.svg"></md-icon>
+        </md-button>
+
+        <md-button aria-label="label" class="md-icon-button">
+          <md-icon md-svg-src="img/icons/ic_label_24px.svg"></md-icon>
+        </md-button>
+
+        <md-button aria-label="photo" class="md-icon-button">
+          <md-icon md-svg-src="img/icons/ic_photo_24px.svg"></md-icon>
+        </md-button>
+
+        <md-menu ng-if="userLoggedIn">
+            <md-button ng-click="$mdOpenMenu()">
+                <img src="/assets/img/profile_pics/{{ user.avatar }}" class="avatar" />
+
+                <span class="caret"></span>
+            </md-button>
+            <md-menu-content>
+              <md-menu-item>
+                  <md-button href="">Profile</md-button>
+              </md-menu-item>
+              <md-menu-item>
+
+                  <md-button class="md-button"
+                      ng-cloak ui-sref="app.login"
+                      ng-if="!userLoggedIn">
+                      Log in
+                  </md-button>
+
+                  <md-button class="md-button"
+                      ng-cloak ng-click="ctrl.logout()"
+                      ng-if="userLoggedIn">
+                      Log out
+                  </md-button>
+              </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+
+
+
+      </md-fab-actions>
+    </md-toolbar>
+
+</md-fab-toolbar> -->

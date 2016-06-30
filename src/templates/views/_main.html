@@ -1,0 +1,11 @@
+
+<div ui-view="toolbar"></div>
+
+<md-content class="main-content" ng-init="$ctrl.init()">
+    MAIN CONTENT**
+    <ui-view></ui-view>
+</md-content>
+
+<div ui-view="panel"></div>
+
+<app-instance-canvas current-instance-id="currentInstanceId"></app-instance-canvas>

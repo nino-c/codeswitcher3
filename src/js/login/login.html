@@ -1,0 +1,19 @@
+<md-content>
+
+    <md-card>
+        <md-card-title>
+            <h3>Log in</h3>
+        </md-card-title>
+        <md-card-content layout-align="start start">
+
+
+          <form ng-submit="ctrl.authorize()">
+            <input type="email" ng-model="ctrl.email">
+            <input type="password" ng-model="ctrl.password">
+            <button type="submit" class="btn btn-primary">Login</button>
+          </form>
+
+        </md-card-content>
+    </md-card>
+
+</md-content>

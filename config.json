@@ -1,0 +1,17 @@
+{
+    "root": [
+        "src/index.html",
+        "src/.htaccess",
+        "src/favicon.ico"
+    ],
+    "scssIncludePaths": [
+        "node_modules/bourbon/app/assets/stylesheets",
+        "node_modules/bourbon-neat/app/assets/stylesheets"
+    ],
+    "cssVendor": [
+        "node_modules/normalize.css/normalize.css",
+        "node_modules/codemirror/theme/mdn-like.css",
+        "node_modules/angular-material/angular-material.css",
+        "node_modules/codemirror/lib/codemirror.css"
+    ]
+}
