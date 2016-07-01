@@ -4,7 +4,15 @@
 
 
 node_modules/*
-website/*
+#website/*
+website/css/*
+website/data/*
+website/js/*
+website/scripts/*
+website/templates/*
+website/.*
+website/favicon.ico
+website/index.html
 logs/*
 .env
 
