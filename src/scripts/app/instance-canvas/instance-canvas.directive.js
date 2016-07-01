@@ -107,7 +107,8 @@ let AppInstanceCanvas = ($rootScope, $compile, api) => {
                 switch (dialect) {
                     case 'text/paperscript':
                         //$parent.clearPaperCanvas();
-                        element.html('<canvas id="bg-canvas" class="canvas-fullscreen"></canvas>' + '<script type="' + dialect + '" canvas="bg-canvas">' + source + '</script>');
+                        // element.html('<canvas id="bg-canvas" class="canvas-fullscreen"></canvas>' + '<script type="' + dialect + '" canvas="bg-canvas">' + source + '</script>');
+                        element.html('<canvas id="bg-canvas"></canvas>' + '<script type="' + dialect + '" canvas="bg-canvas">' + source + '</script>');
                         $compile(element.contents())($scope);
                         //console.log(source);
                         eval(seedcodelines);

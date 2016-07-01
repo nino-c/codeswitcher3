@@ -12,7 +12,7 @@ export default class MainController {
 
 		this.loading = false;
         this.testvar2 = 2;
-		this.featuredApps = [[849,30], [901,30], [888,60], [121,7]];
+		this.featuredApps = [[121,30], [849,30], [901,30], [888,60], [121,7]];
 		this.currentInstance = null;
         this.currentInstanceIndex = 0;
         this.currentInstanceId = this.featuredApps[0][0];

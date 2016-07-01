@@ -1,6 +1,6 @@
-<div class="panel-bottom" layout="row" layout-align="start center">
+<div class="panel-bottom" layout="row" layout-align="start start">
 
-    <md-button flex class="md-button md-primary button-huge"
+    <md-button flex="nogrow" class="md-button md-primary button-huge"
         ui-sref="app.applist"
         role="button">
 
@@ -9,5 +9,13 @@
             <span>Browse Apps</span>
         </div>
     </md-button>
+
+
+
+    <aside flex class="app-titles pull-right">
+        <div class="app-title-text">{{ $ctrl.currentInstance.game.title }}</div>
+        <div class="app-subtitle-text">{{ $ctrl.currentInstance.game.subtitle }}</div>
+        <!-- <ng-include src="views/seed-panel.html" /> -->
+    </aside>
 
 </div>

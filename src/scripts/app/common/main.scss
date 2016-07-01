@@ -2,19 +2,59 @@
 .panel-bottom {
     position: fixed;
     bottom: 0px;
-    padding: 5em;
-
+    padding: 0px 30px 80px 30px;
+    //border-top: 2px solid #999;
+    width: 100%;
+    height: auto;
 }
 
 .button-huge {
-    transform: scale(2);
-    //blend-mode: difference;
-    mix-blend-mode: difference;
-    //font-size: 24px;
-
+    //transform: scale(2);
+    transform-origin: top left;
+    display: inline-block;
+    margin: 0px;
+    //color: white !important;
+    //mix-blend-mode: overlay;
+    //border: 1px solid #ccc;
+    //background-color: rgba(245,245,245,0.4);
     md-icon {
-        mix-blend-mode: difference;
+        //mix-blend-mode: difference;
         margin-top: -3px;
     }
 
+}
+
+.app-titles {
+    text-align: right;
+
+    letter-spacing: 0.2em;
+    //padding-right: 12px;
+    //margin-top: 10px;
+    .app-title-header {
+      &:after {
+        content: ":";
+        position: absolute;
+      }
+    }
+    .app-title-text {
+      font-size: 2em;
+      line-height: 2.1em;
+      opacity: 0.8;
+      //letter-spacing: 0.35em;
+      &:before {
+        content: open-quote;
+      }
+      &:after {
+        content: close-quote;
+        position: absolute;
+      }
+    }
+    .app-subtitle-text {
+        font-size: 1.6em;
+        color: rgba(100, 100, 100, 0.6);
+        &:after {
+          //content: close-quote;
+          position: absolute;
+        }
+    }
 }
