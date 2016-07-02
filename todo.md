@@ -1,7 +1,35 @@
+
+# general mr. code-switcher mythology
+
+## code-switchings
+- continue code-switchings table, use only in meta-tags
+  - a code-switching in this case is a sentence or two, with the flavor of a zen koan
+
+## characters
+glasses the spicy node-flipper
+
+----------------------------------------
+# names and labels
+- "app" => ___
+- "exhibition" => ___
+- "Apps at an Exhibition" => ___
+
+
+-----------------------------------------
+# programming
+
+
 ## app-display
 - ordering of instance snapshots
 - speed up load more
 - instantiate
+
+## instance-canvas
+- ** add caching of pure-functional (no Math.random) animated apps **
+  - save *data* from each *set of calculations*
+      => save each frame as SVG (?)
+      [will drastically speed up slow apps]
+- homogenize frame-rate
 
 ## instance page
 - cycle
@@ -26,7 +54,3 @@
 ### new app ideas
 ## existing app expansion ideas
 - balls of string: transform by rotation about y-axis
-
-## code-switchings
-- continue code-switchings table, use only in meta-tags
-  - a code-switching in this case is a sentence or two, with the flavor of a zen koan

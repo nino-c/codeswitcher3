@@ -88,35 +88,32 @@ let PaperscriptCanvas = ($compile) => {
     }
 }
 
-class AppInstanceCanvas extends Inject {
-    static $inject = ['$rootScope', '$compile', 'api'];
 
-    constructor(...args) => {
-        super(...args);
-    }
+let AppInstanceCanvas = ($rootScope, $compile, $state, api) => {
     'ngInject';
 
     return {
         restrict: 'E',
         scope: {
             currentInstanceId: '=',
-            canvasLoadConfig: '='
+            canvasLoadConfig: '=',
         },
         link: ($scope, element, attrs) => {
 
             let execInstance = (instance) => {
                 console.log('execInstance', instance);
+                $scope.instance = instance;
                 $rootScope.topScope.currentInstance = instance;
 
                 var dialect = instance.game.scriptType;
                 var seedStructure = JSON.parse(instance.game.seedStructure);
                 var seed = JSON.parse(instance.seed);
 
-                if ($rootScope.viewname == 'instance') {
-                    $rootScope.viewscope.dialect = dialect;
-                    $rootScope.viewscope.seedStructure = seedStructure;
-                    $rootScope.viewscope.seed = seed;
-                }
+                // if ($state.current.data.viewname == 'instance') {
+                //     $rootScope.viewscope.dialect = dialect;
+                //     $rootScope.viewscope.seedStructure = seedStructure;
+                //     $rootScope.viewscope.seed = seed;
+                // }
 
                 // prepare code to eval
                 // line-by-line for the system-generated part
@@ -175,7 +172,6 @@ class AppInstanceCanvas extends Inject {
                     instance.sourcecode += "\ntry\n\twindow.start()\ncatch error\n\tconsole.log error";
                     instance.sourcecode = CoffeeScript.compile(instance.sourcecode);
                     var source = seedcodelines.join("\n") + "\n"
-                        //+ required_codeblocks + "\n"
                         + instance.sourcecode;
 
                 } else {
@@ -183,48 +179,24 @@ class AppInstanceCanvas extends Inject {
                     var source = seedcodelines.join("\n") + "\n" + required_codeblocks + "\n" + instance.sourcecode;
                 }
 
-
-
-
-
                 if (source.indexOf('window.renderingDone()') == -1) {
                     source += "\n\nwindow.renderingDone()";
                 }
 
                 switch (dialect) {
                     case 'text/paperscript':
-                        //$parent.clearPaperCanvas();
-                        // element.html('<canvas id="bg-canvas" class="canvas-fullscreen"></canvas>' + '<script type="' + dialect + '" canvas="bg-canvas">' + source + '</script>');
-                        element.html('<canvas id="bg-canvas"></canvas>' + '<script type="' + dialect + '" canvas="bg-canvas">' + source + '</script>');
+                        element.html('<canvas id="bg-canvas"></canvas>' + '<script type="'
+                            + dialect + '" canvas="bg-canvas">' + source + '</script>');
                         $compile(element.contents())($scope);
-                        //console.log(source);
                         eval(seedcodelines);
-                        //window.Canvas = angular.element(element);
-
                         paper.PaperScript.load();
-                        //loading = false;
                         break;
                     default:
-                        //$parent.clearCanvas();
                         element.html('<canvas id="bg-canvas"></canvas>');
                         $compile(element.contents())($scope);
-                        //console.log($scope);
-
-                        // extra_seedcodelines = [ 'var canvas = $("#bg-canvas");',
-                        //     'var Canvas = document.getElementById("bg-canvas");'];
-
-                        // eval(extra_seedcodelines.join("\n") + "\n" + seedcodelines );
-                        //console.log('seedcodelines', seedcodelines);
                         eval(seedcodelines);
-
-                        window.Canvas = angular.element(element);
-                        //console.log('Canvas', Canvas);
-                        //gameFunction = new Function('Canvas', source);
-                        //gameFunction(Canvas);
-                        //console.log(source);
+                        $window.Canvas = angular.element(element);
                         eval(source);
-                        //loading = false;
-
                         break;
                 }
 
@@ -253,9 +225,6 @@ class AppInstanceCanvas extends Inject {
 
             });
 
-        },
-        compile: (tElement) => {
-            console.log('^^compile, tElement', tElement);
         }
     }
 

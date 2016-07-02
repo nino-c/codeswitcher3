@@ -1,5 +1,6 @@
 <md-bottom-sheet class="md-grid" layout="column" md-whiteframe="5" ng-cloak>
     <div layout="row" layout-align="center center" class="app-titles pull-right">
+        {{ currentInstanceId }} -- {{ currentInstance }}
         <div class="app-title-text">{{ $ctrl.currentInstance.game.title }}</div>
         <div class="app-subtitle-text">{{ $ctrl.currentInstance.game.subtitle }}</div>
         <!-- <ng-include src="views/seed-panel.html" /> -->

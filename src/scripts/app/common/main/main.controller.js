@@ -39,8 +39,10 @@ export default class MainController {
 			this.currentInstanceId = id;
 		};
 
+        console.log('%%%',this);
         this.showBottomPanel = () => {
             $mdBottomSheet.show({
+                //scope: this,
                 templateUrl: '/templates/common/bottom-panel/bottom-panel.html',
                 controller: 'BottomPanelController',
                 controllerAs: 'ctrl',
