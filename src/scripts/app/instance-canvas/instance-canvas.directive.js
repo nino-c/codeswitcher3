@@ -1,6 +1,99 @@
 import 'angular';
+import {Inject} from 'angular-es6';
 
-let AppInstanceCanvas = ($rootScope, $compile, api) => {
+let SeedListValue = () => {
+
+    return {
+        restrict: 'E',
+        require: 'ngModel',
+        scope: {
+            value: '@',
+            type: '@'
+        },
+        template: '<span ng-switch="type" class="seed-list-value">'
+                    + '<span ng-switch-when="color" class="list-value">'
+                        + '<div style="background-color: {{ value }}; width: 15px; height: '
+                            +'15px; border: 1px solid #dddddd;"></div>'
+                        //+ '<colorbox hex="{{ value }}"></colorbox>'
+                    + '</span>'
+                    + '<span ng-switch-when="math" class="math">'
+                        + '${{ value }}$'
+                    + '</span>'
+                    + '<span ng-switch-default class="list-value">'
+                        + '{{ value }}'
+                    + '</span>'
+                + '</span>',
+        link: function(scope, element, attrs, ngModel) {
+            ngModel.$render = function() {
+                scope.type = ngModel.$viewValue.type;
+                scope.value = ngModel.$viewValue.value;
+            }
+        }
+    }
+}
+
+
+let SeedList = ($compile) => {
+    'ngInject';
+
+    return {
+        restrict: 'E',
+        replace: true,
+        require: 'ngModel',
+        scope: {
+            seedlings: '@'
+        },
+        transclude: true,
+        template: '<div><div ng-repeat="seedling in seedlings" class="seedline">'
+            + '<strong>{{ seedling[0] }}:</strong>'
+            + '<seed-list-value ng-model="seedling[1]"></seed-list-value>'
+            + '</div></div>',
+        link: function(scope, element, attrs, ngModel) {
+            scope.seedlings = [];
+            ngModel.$render = function() {
+                scope.seedlings = _.pairs(ngModel.$viewValue);
+            }
+        }
+    }
+}
+
+let Colorbox = () => {
+    return {
+        scope: {
+            hex: '='
+        },
+        template:'<div style="background-color: {{ hex }}; width: 15px; height: '
+                +'15px; border: 2px solid #dddddd;"></div>',
+        link: function(scope, element, attrs) {
+            //scope.hex = attrs.hex;
+            console.log('colorbox', scope, element, attrs);
+        }
+    }
+}
+
+let PaperscriptCanvas = ($compile) => {
+    'ngInject';
+
+    return {
+        restrict: 'E',
+        link: (scope, element, attrs) => {
+            element.html('<canvas id="paperscript-canvas" class="canvas-fullscreen" resize="true" '
+                + ' ng-click="window.clickHandler($event)"'
+                + ' keepalive="true"></canvas>'
+                + '<script type="text/paperscript" canvas="bg-canvas" src="'
+                + attrs.source +'"></script>');
+            $compile(element.contents())(scope);
+            paper.PaperScript.load();
+        }
+    }
+}
+
+class AppInstanceCanvas extends Inject {
+    static $inject = ['$rootScope', '$compile', 'api'];
+
+    constructor(...args) => {
+        super(...args);
+    }
     'ngInject';
 
     return {
@@ -29,17 +122,11 @@ let AppInstanceCanvas = ($rootScope, $compile, api) => {
                 // line-by-line for the system-generated part
                 var seedcodelines = [];
                 seedcodelines.push('var seed = ' + instance.seed + ';');
-                //window.Canvas = angular.element(element);
-                // canvas declarations
-                //if (dialect.indexOf('paperscript') == -1) {
                 seedcodelines.push('var canvas = $("#bg-canvas");')
                 seedcodelines.push('var Canvas = document.getElementById("bg-canvas");')
                 seedcodelines.push('canvas.css({\'display\':\'block\'});')
                 seedcodelines.push('Canvas.width = $(window).width();')
                 seedcodelines.push('Canvas.height = $(window).height()-50;')
-                    //seedcodelines.push( 'console.log(Canvas);' )
-                    //seedcodelines.push( 'console.log(canvas);' )
-                    //}
 
                 // import seed attributes into local namespace
                 for (var attr in seed) {
@@ -167,15 +254,15 @@ let AppInstanceCanvas = ($rootScope, $compile, api) => {
             });
 
         },
-        // compile: (tElement) => {
-        //     console.log('^^compile, tElement', tElement);
-        // }
+        compile: (tElement) => {
+            console.log('^^compile, tElement', tElement);
+        }
     }
 
 }
 
 
-export default AppInstanceCanvas;
+export {AppInstanceCanvas, PaperscriptCanvas, Colorbox, SeedList, SeedListValue};
 // class AppInstanceCanvas {
 //     constructor($rootScope, api) {
 //         'ngInject';

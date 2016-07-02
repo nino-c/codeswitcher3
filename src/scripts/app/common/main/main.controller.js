@@ -5,7 +5,8 @@
 
 export default class MainController {
 
-    constructor($rootScope, $scope, $location, $timeout, $window, $state, $mdDialog) {
+    constructor($rootScope, $scope, $location, $timeout, $window,
+        $state, $mdBottomSheet, $mdDialog, authentication) {
 		'ngInject';
 
         $rootScope.topScope = this;
@@ -22,12 +23,12 @@ export default class MainController {
 		};
 
         this.init = () => {
-            console.log('content init', $state);
             if ($state.current.name != 'app.instance') {
                 $timeout(() => {
                     this.setCurrentInstance( this.featuredApps[this.currentInstanceIndex][0] );
                 })
             }
+            this.showBottomPanel();
         }
 
 		this.setCurrentInstance = (id) => {
@@ -38,10 +39,22 @@ export default class MainController {
 			this.currentInstanceId = id;
 		};
 
-		this.toggleBottomBar = () => {
-            $rootScope.showBottom = !$rootScope.showBottom;
-			console.log('toggleBottomBar', $rootScope.showBottom);
-        };
+        this.showBottomPanel = () => {
+            $mdBottomSheet.show({
+                templateUrl: '/templates/common/bottom-panel/bottom-panel.html',
+                controller: 'BottomPanelController',
+                controllerAs: 'ctrl',
+                clickOutsideToClose: true,
+                escapeToClose: true,
+                disableBackdrop: true,
+            }).then(clickedItem => {
+                console.log('clickedItem', clickedItem);
+            })
+        }
+
+        this.logout = () => {
+            authentication.logout();
+        }
 
         this.nextApp = () => {
             this.currentInstanceIndex++;
@@ -58,7 +71,7 @@ export default class MainController {
                 locals: {
                     app: this.currentInstance.game,
                 },
-                templateUrl: 'views/view-source-dialog.html',
+                templateUrl: '/templates/views/view-source-dialog.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 controller: ViewSourceDialog,

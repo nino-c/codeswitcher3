@@ -1,0 +1,19 @@
+<div layout="row" ng-init="$ctrl.init()">
+
+    <div layout="row">
+
+        <div ui-view="toolbar"></div>
+
+        <md-content class="main-content">
+            <ui-view></ui-view>
+        </md-content>
+
+    </div>
+
+    <div ui-view="panel"></div>
+
+
+</div>
+
+<div ui-view="bottom-panel"></div>
+<app-instance-canvas current-instance-id="$ctrl.currentInstanceId" />

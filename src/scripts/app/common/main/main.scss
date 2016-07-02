@@ -8,6 +8,24 @@
     height: auto;
 }
 
+md-bottom-sheet {
+    background-color: rgba(250,250,250,0.7) !important;
+}
+
+button {
+    md-icon {
+        margin-top: -3px;
+    }
+}
+
+.md-scroll-mask {
+    z-index: 1;
+}
+
+.main-content {
+    z-index: 2;
+}
+
 .button-huge {
     //transform: scale(2);
     transform-origin: top left;
@@ -17,11 +35,6 @@
     //mix-blend-mode: overlay;
     //border: 1px solid #ccc;
     //background-color: rgba(245,245,245,0.4);
-    md-icon {
-        //mix-blend-mode: difference;
-        margin-top: -3px;
-    }
-
 }
 
 .app-titles {

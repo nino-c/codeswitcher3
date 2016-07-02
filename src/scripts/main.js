@@ -10,7 +10,7 @@ import incompatible from './utilities/incompatible';
 import appCopy from './data/app-copy.json';
 
 // render build version if enabled
-version();
+//version();
 
 // set loader callbacks
 function progressCb(e) {

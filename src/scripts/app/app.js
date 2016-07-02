@@ -58,7 +58,7 @@ window.app = angular.module('app', [
         $resourceProvider, $mdIconProvider) {
 
         $mdThemingProvider.theme('default')
-            .primaryPalette('grey')
+            .primaryPalette('blue-grey')
             .accentPalette('orange');
 
         $mdIconProvider.viewBoxSize = 24;
@@ -66,21 +66,22 @@ window.app = angular.module('app', [
 
         $stateProvider.state('app', {
                 url: '/app',
+                abstract: true,
                 views: {
                     '': {
                         controller: 'MainController',
                         controllerAs: '$ctrl',
-                        templateUrl: '/templates/common/main.html'
+                        templateUrl: '/templates/common/main/main.html'
                     },
-                    // 'toolbar@app': {
-                    //     controller: 'ToolbarController',
-                    //     controllerAs: 'ctrl',
-                    //     templateUrl: '/templates/views/toolbar.html'
-                    // },
-                    'panel@app': {
-                        controller: 'PanelController',
+                    'toolbar@app': {
+                        controller: 'ToolbarController',
                         controllerAs: 'ctrl',
-                        templateUrl: '/templates/views/panel.html'
+                        templateUrl: '/templates/common/toolbar/toolbar.html'
+                    },
+                    'panel@app': {
+                        templateUrl: '/templates/common/panel/panel.html',
+                        controller: 'PanelController',
+                        controllerAs: 'ctrl'
                     }
                 }
             })
@@ -88,7 +89,7 @@ window.app = angular.module('app', [
                 url: '/home',
                 views: {
                     '': {
-                        templateUrl: '/templates/common/home.html',
+                        templateUrl: '/templates/common/home/home.html',
                         controller: 'HomeController',
                         controllerAs: 'ctrl'
                     },

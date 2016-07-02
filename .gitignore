@@ -4,7 +4,7 @@
 
 
 node_modules/*
-#website/*
+website/*
 website/css/*
 website/data/*
 website/js/*
