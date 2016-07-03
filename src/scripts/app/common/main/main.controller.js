@@ -6,7 +6,7 @@
 export default class MainController {
 
     constructor($rootScope, $scope, $location, $timeout, $window,
-        $state, $mdBottomSheet, $mdDialog, authentication) {
+        $state, $mdBottomSheet, $mdDialog, $mdSidenav, $log, authentication) {
 		'ngInject';
 
         $rootScope.topScope = this;
@@ -39,19 +39,38 @@ export default class MainController {
 			this.currentInstanceId = id;
 		};
 
-        console.log('%%%',this);
+
         this.showBottomPanel = () => {
-            $mdBottomSheet.show({
-                //scope: this,
+            $rootScope.showOnPanel({
                 templateUrl: '/templates/common/bottom-panel/bottom-panel.html',
                 controller: 'BottomPanelController',
                 controllerAs: 'ctrl',
                 clickOutsideToClose: true,
                 escapeToClose: true,
                 disableBackdrop: true,
-            }).then(clickedItem => {
-                console.log('clickedItem', clickedItem);
-            })
+            });
+        }
+
+        $rootScope.$watch('stateData', stateData => {
+            console.log('stateData', stateData);
+            if (stateData.viewname == 'app-list') {
+                console.log('SNR', $mdSidenav('sidenavRight'));
+                $log.debug($mdSidenav('sidenavRight'));
+                $mdSidenav('sidenavRight').toggle().then(() => {
+                    $log.debug('sidenav UP for app-list');
+                })
+            }
+        })
+
+        this.browseApps = () => {
+            // $rootScope.showOnPanel({
+            //     templateUrl: '/templates/app-list/app-list.html',
+            //     controller: 'AppListController',
+            //     controllerAs: 'ctrl',
+            //     clickOutsideToClose: true,
+            //     escapeToClose: true,
+            //     disableBackdrop: true,
+            // });
         }
 
         this.logout = () => {
@@ -64,9 +83,7 @@ export default class MainController {
             this.setCurrentInstance( this.featuredApps[this.currentInstanceIndex][0] );
         };
 
-        this.showDetailPanel = () => {
 
-        }
 
         this.viewSource = function(ev) {
             $mdDialog.show({

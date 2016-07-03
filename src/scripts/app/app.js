@@ -12,7 +12,9 @@ import 'angular-ui-codemirror';
 import './config';
 import './config/templates';
 import './services';
+import './filters';
 import './common';
+import './app-list';
 import './instance-tools';
 import './instance-canvas'
 import './login';
@@ -39,7 +41,9 @@ window.app = angular.module('app', [
         'app.config',
         'app.templates',
         'app.services',
+        'app.filters',
         'app.login',
+        'app.applist',
         'app.instancecanvas'
 
     ]).value('ui.config', {
@@ -106,12 +110,9 @@ window.app = angular.module('app', [
             })
             .state('app.applist', {
                 url: '/app-list',
-                //   templateUrl: '/templates/views/app-list-by-popularity.html',
-                //   controller: 'AppListController',
-                //   controllerAs: 'ctrl',
                 views: {
                     'panel-content@app': {
-                        templateUrl: '/templates/views/app-list-by-popularity.html',
+                        templateUrl: '/templates/app-list/app-list.html',
                         controller: 'AppListController',
                         controllerAs: 'ctrl'
                     }
@@ -172,7 +173,7 @@ window.app = angular.module('app', [
 
     })
     .run(function($rootScope, $location, $http, $cookies, $timeout, $mdToast, $window,
-        $document, authentication) {
+        $document, $mdBottomSheet, authentication) {
 
         $window.Complex = Complex;
         //$window.MathJax = MathJax;
@@ -220,6 +221,12 @@ window.app = angular.module('app', [
             var prevUrl = history.length > 1 ? history.splice(-2)[0] : "/";
             $location.path(prevUrl);
         };
+
+        $rootScope.showOnPanel = function(options) {
+            $mdBottomSheet.show(options).then(clickedItem => {
+                console.log('clickedItem', clickedItem);
+            })
+        }
 
         $rootScope.refreshMathJax = function() {
             $timeout(function() {

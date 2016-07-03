@@ -111,11 +111,8 @@ window.app = angular.module('app', [
         })
         .state('app.applist', {
           url: '/app-list',
-        //   templateUrl: '/templates/views/app-list-by-popularity.html',
-        //   controller: 'AppListController',
-        //   controllerAs: 'ctrl',
           views: {
-              'panel-content@app': {
+              '': {
                   templateUrl: '/templates/views/app-list-by-popularity.html',
                   controller: 'AppListController',
                   controllerAs: 'ctrl'

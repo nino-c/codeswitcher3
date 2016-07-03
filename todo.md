@@ -9,6 +9,11 @@
 glasses the spicy node-flipper
 
 ----------------------------------------
+# philosophy
+- place more attention on user identity
+  - this will make the website easier to understand, as far as 'seeing what it does' or 'what it is' upon initial view and browsing
+
+----------------------------------------
 # names and labels
 - "app" => ___
 - "exhibition" => ___

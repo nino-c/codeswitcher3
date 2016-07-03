@@ -104,6 +104,7 @@ let AppInstanceCanvas = ($rootScope, $compile, $state, api) => {
                 console.log('execInstance', instance);
                 $scope.instance = instance;
                 $rootScope.topScope.currentInstance = instance;
+                $rootScope.$broadcast('on-set-current-instance');
 
                 var dialect = instance.game.scriptType;
                 var seedStructure = JSON.parse(instance.game.seedStructure);

@@ -1,0 +1,127 @@
+<div scroll-to-top ng-init="ctrl.initAppList()">
+
+    <!-- <md-content class="slide-top main-md-content" md-whiteframe="3" scroll-to-top> -->
+
+        <!-- <div class="toolbar-inner" ng-show="false">
+            <div layout="row" layout-align="space-between start">
+                <div flex> -->
+
+                    <!-- <md-menu>
+                        <md-button class="md-icon-button" ng-click="ctrl.openSortMenu($mdOpenMenu, $event)">
+                            <md-icon md-menu-origin md-font-set="material-icons">sort</md-icon>
+                        </md-button>
+                        <md-menu-content width="4">
+                            <md-menu-item
+                                ng-repeat="x in [['popularity','-popularity'], ['newest', '-created']]">
+                              <md-button ng-click="sortBy(x[1])">
+                                {{ x[0] }}
+                              </md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu> -->
+                    <!-- <md-radio-group ng-model="ctrl.sortBy">
+                        <md-radio-button value="-popularity">by popularity</md-radio-button>
+                        <md-radio-button value="-created">by most recent</md-radio-button>
+                    </md-radio-group> -->
+
+                <!-- </div>
+                <div>
+
+                    <md-input-container class="no-top-margin">
+                        <md-icon md-svg-src="/assets/img/icons/ic_search_black_24px.svg"
+                            class="half-transparent"
+                            ng-click="showSearch=!showSearch">search</md-icon>
+                        <input ng-show="showSearch" ng-model="searchInput"
+                            id="app-search" placeholder="search apps..." />
+                    </md-input-container>
+
+                </div>
+            </div>
+        </div> -->
+
+        <div class="toolbar-inner" ng-show="false">
+            <div layout="row" layout-align="space-between start">
+                <div flex>
+
+                </div>
+                <div>
+
+                    <md-input-container class="no-top-margin">
+                        <md-icon md-svg-src="/assets/img/icons/ic_search_black_24px.svg"
+                            class="half-transparent"
+                            ng-click="showSearch=!showSearch">search</md-icon>
+                        <input ng-show="showSearch" ng-model="searchInput"
+                            id="app-search" placeholder="search apps..." />
+                    </md-input-container>
+
+                </div>
+            </div>
+        </div>
+
+        <md-divider class="top" ng-show="!ctrl.loading"></md-divider>
+
+        <div layout="column" ng-show="ctrl.loading">
+            <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+        </div>
+
+        <md-content ng-repeat="app in ctrl.apps | orderBy: ctrl.sortBy"
+            class="app-list" ui-sref="app.display({id:app.id})">
+
+            <div class="section-title">{{ app.title }}</div>
+            <div class="text-muted section-subtitle"
+            ng-if="app.subtitle != ''">{{ app.subtitle }}</div>
+
+            <div class="spacer"></div>
+
+            <div layout-gt-xs="row" layout-xs="column">
+                <div flex-gt-xs="50">
+                    <div layout="row" layout-align="center center">
+                        <img src="{{ app.owner.avatar }}" class="avatar" />
+                        by {{ app.owner.name }}
+                    </div>
+                    <div class="info">
+                        <div class="label-left">Author:</div>
+                        {{ app.owner.name }}
+                    </div>
+                    <div class="info">
+                        <div class="label-left">Category:</div>
+                        {{ app.category }}
+                    </div>
+                    <div class="info">
+                        <div class="label-left">Views:</div>
+                        {{ app.popularity }}
+                    </div>
+                    <div class="info">
+                        <div class="label-left">Created:</div>
+                        {{ app.created }}
+                    </div>
+
+                    <div class="caption">
+                        <br />
+                        <p>{{ app.description | truncateText:400 }}</p>
+                    </div>
+
+                    <spacer hide-gt-xs />
+
+                </div>
+                <div flex-gt-xs="5"></div>
+                <div flex-gt-xs="45">
+                    <md-grid-list md-cols="3" md-row-height="1:1" md-gutter="2px">
+                        <md-grid-tile ng-repeat="im in app.images | limit:9">
+                            <div>
+                                <img src="/media/{{ im | thumbnail:125 }}" class="thumbnail-lg" />
+                            </div>
+                        </md-grid-tile>
+                    </md-grid-list>
+                </div>
+            </div>
+
+            <md-divider></md-divider>
+
+        </md-content>
+
+
+
+    <!-- </md-content> -->
+
+<!-- </div>

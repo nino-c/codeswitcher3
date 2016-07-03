@@ -1,17 +1,32 @@
-<md-bottom-sheet class="md-grid" layout="column" md-whiteframe="5" ng-cloak>
-    <div layout="row" layout-align="center center" class="app-titles pull-right">
-        {{ currentInstanceId }} -- {{ currentInstance }}
-        <div class="app-title-text">{{ $ctrl.currentInstance.game.title }}</div>
-        <div class="app-subtitle-text">{{ $ctrl.currentInstance.game.subtitle }}</div>
+<md-bottom-sheet class="md-grid" layout="column"
+    md-whiteframe="5" ng-cloak ng-init="ctrl.init()">
+
+    <div layout="column" class="app-titles pull-right">
+        <div class="app-title-text">{{ ctrl.instance.game.title }}</div>
+        <div class="app-subtitle-text">{{ ctrl.instance.game.subtitle }}</div>
         <!-- <ng-include src="views/seed-panel.html" /> -->
     </div>
     <div layout="row">
-        <div ng-repeat="action in ctrl.actions">
-            <md-button class="md-raised {{ action.classes }}" ng-click="listItemClick($index)">
+
+        <div flex="nogrow">
+            <md-button class="md-raised md-accent"
+                ui-sref="app.applist">
+                <md-icon md-svg-src="apps" flex="nogrow"></md-icon>
+                <span class="md-grid-text">Browse Apps</span>
+            </md-button>
+        </div>
+
+        <div flex="grow">&nbsp;</div>
+
+        <div flex="none">
+            <md-button class="{{ action.classes }}"
+                ng-click="listItemClick($index)"
+                ng-repeat="action in ctrl.actions">
                 <md-icon md-svg-src="{{ action.icon }}"></md-icon>
                 <span class="md-grid-text">{{ action.label }}</span>
             </md-button>
         </div>
+
         <!-- <md-list flex layout="row" layout-align="center center">
             <md-list-item ng-repeat="action in ctrl.actions">
                 <div>

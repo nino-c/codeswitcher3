@@ -1,15 +1,24 @@
 import 'angular';
 
 export default class BottomPanelController {
-    constructor($scope, $mdBottomSheet) {
+    constructor($scope, $rootScope, $mdBottomSheet) {
         'ngInject';
 
+        this.init = () => {
+            this.instance = $rootScope.topScope.currentInstance;
+            $scope.$on('on-set-current-instance', () => {
+                this.instance = $rootScope.topScope.currentInstance;
+            })
+        }
+
         this.actions = [
-            {label: 'Browse Apps', icon: 'apps', classes: ''},
-            {label: 'View source-code', icon: 'remove_red_eye_black', classes: 'md-accent'},
-            {label: 'Snapshot', icon: 'photo_camera', classes: 'md-primary'},
-            {label: 'Next app', icon: 'arrow_forward', classes: ''},
-            {label: 'Edit Seed', icon: 'settings', classes: ''}
+            //{label: 'Browse Apps', icon: 'apps', classes: ''},
+
+            //{label: 'Snapshot', icon: 'photo_camera', classes: 'md-primary'},
+
+            {label: 'View source-code', icon: 'remove_red_eye_black', classes: ''},
+            {label: 'Edit App', icon: 'settings', classes: ''}
+            // {label: 'Next App', icon: 'arrow_forward', classes: ''}
         ];
 
         this.actionClicked = $index => {
@@ -17,4 +26,5 @@ export default class BottomPanelController {
         }
 
     }
+
 }
