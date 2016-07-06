@@ -6,8 +6,9 @@ import 'angular-resource';
 import 'angular-cookies';
 import 'angular-bootstrap';
 import 'angular-animate';
-import 'angular-ui-codemirror';
-//import 'ngreact'
+
+// module was altered -- just added dependency injection
+import './ui.codemirror/ui.codemirror';
 
 import './config';
 import './config/templates';
@@ -15,6 +16,8 @@ import './services';
 import './filters';
 import './common';
 import './app-list';
+//import './instance-information';
+import './app-display';
 import './instance-tools';
 import './instance-canvas'
 import './login';
@@ -32,9 +35,11 @@ import CodeMirror from 'codemirror';
 
 window.app = angular.module('app', [
         'ui.router',
+        'ngAnimate',
         'ngMaterial',
         'ngResource',
         'ngCookies',
+        'ui.codemirror',
 
         'app.common',
         'app.services',
@@ -44,6 +49,8 @@ window.app = angular.module('app', [
         'app.filters',
         'app.login',
         'app.applist',
+        //'app.instanceinformation',
+        'app.appdisplay',
         'app.instancecanvas'
 
     ]).value('ui.config', {
@@ -68,7 +75,20 @@ window.app = angular.module('app', [
         $mdIconProvider.viewBoxSize = 24;
         $urlRouterProvider.otherwise('/app/home')
 
-        $stateProvider.state('app', {
+        $stateProvider.state('userapp', {
+                url: '/userapp/{scriptname:[a-zA-Z\-]+}',
+                views: {
+                    '': {
+                        templateUrl: '/templates/views/userapp.html',
+                        controller: function($scope, $stateParams) {
+                            'ngInject';
+
+                            this.source = `/assets/userapps/${$stateParams.scriptname}.js`;
+                        },
+                        controllerAs: '$ctrl'
+                    }
+                }
+            }).state('app', {
                 url: '/app',
                 abstract: true,
                 views: {
@@ -81,12 +101,12 @@ window.app = angular.module('app', [
                         controller: 'ToolbarController',
                         controllerAs: 'ctrl',
                         templateUrl: '/templates/common/toolbar/toolbar.html'
-                    },
-                    'panel@app': {
-                        templateUrl: '/templates/common/panel/panel.html',
-                        controller: 'PanelController',
-                        controllerAs: 'ctrl'
                     }
+                    // 'panel@app': {
+                    //     templateUrl: '/templates/common/panel/panel.html',
+                    //     controller: 'PanelController',
+                    //     controllerAs: 'ctrl'
+                    // }
                 }
             })
             .state('app.home', {
@@ -97,12 +117,22 @@ window.app = angular.module('app', [
                         controller: 'HomeController',
                         controllerAs: 'ctrl'
                     },
-                    'panel-content@app': {
-                        templateUrl: '/templates/views/panel.home.html'
-                    },
-                    'panel-buttons@app': {
-                        templateUrl: '/templates/views/panel.button-bar.home.html'
+                    'bottom-panel@app': {
+                        templateUrl: '/templates/common/bottom-panel/bottom-panel.html',
+                        controller: 'BottomPanelController',
+                        controllerAs: 'ctrl'
                     }
+                    // 'floating-panel@app': {
+                    //     templateUrl: '/templates/instance-information/instance-information.html',
+                    //     controller: 'InstanceInformationController',
+                    //     controllerAs: 'ctrl'
+                    // }
+                    // 'panel-content@app': {
+                    //     templateUrl: '/templates/views/panel.home.html'
+                    // },
+                    // 'panel-buttons@app': {
+                    //     templateUrl: '/templates/views/panel.button-bar.home.html'
+                    // }
                 },
                 data: {
                     viewname: 'home'
@@ -133,8 +163,8 @@ window.app = angular.module('app', [
             .state('app.display', {
                 url: '/{id:[0-9]+}/',
                 views: {
-                    'panel-content@app': {
-                        templateUrl: '/templates/views/app-display.html',
+                    'floating-panel@app': {
+                        templateUrl: '/templates/app-display/app-display.html',
                         controller: 'AppDisplayController',
                         controllerAs: 'ctrl'
                     }
@@ -191,6 +221,7 @@ window.app = angular.module('app', [
             options.crossDomain = false;
         });
 
+
         $http.defaults.headers.common['X-CSRFToken'] = $cookies['csrftoken'];
         $http.defaults.xsrfCookieName = 'csrftoken';
         $http.defaults.xsrfHeaderName = 'X-CSRFToken';
@@ -223,6 +254,7 @@ window.app = angular.module('app', [
         };
 
         $rootScope.showOnPanel = function(options) {
+            console.log('$rootScope.showOnPanel', options);
             $mdBottomSheet.show(options).then(clickedItem => {
                 console.log('clickedItem', clickedItem);
             })

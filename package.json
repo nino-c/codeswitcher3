@@ -80,6 +80,7 @@
     "ismobilejs": "^0.3.9",
     "jquery": "^3.0.0",
     "mathjax": "^2.6.1",
+    "mathjs": "^3.3.0",
     "normalize.css": "^3.0.3",
     "numeric": "^1.2.6",
     "paper": "^0.9.25",

@@ -1,19 +1,27 @@
 <div layout="row" ng-init="$ctrl.init()">
 
-    <div layout="row">
+    <div ui-view="toolbar"></div>
 
-        <div ui-view="toolbar"></div>
+    <md-content>
+        <ui-view></ui-view>
+    </md-content>
 
-        <md-content class="main-content">
-            <ui-view></ui-view>
+    <md-sidenav md-is-open="false"
+        md-is-locked-open="false"
+        class="md-sidenav-right md-whiteframe-4dp"
+        md-component-id="sidenavRight">
+
+        <md-content layout="column" layout-padding>
+            <div ui-view="panel-content"></div>
+            <div ui-view="panel-buttons"></div>
+
         </md-content>
+    </md-sidenav>
 
-    </div>
-
-    <div ui-view="panel"></div>
-
+    <div ui-view="bottom-panel"></div>
+    <div ui-view="floating-panel" class="floating-panel" md-whiteframe="4"></div>
 
 </div>
 
-<div ui-view="bottom-panel"></div>
+
 <app-instance-canvas current-instance-id="$ctrl.currentInstanceId" />

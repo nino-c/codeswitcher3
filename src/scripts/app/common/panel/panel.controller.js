@@ -8,8 +8,11 @@ export default class PanelController {
     constructor($rootScope, $scope, $location) {
         'ngInject';
 
-        this.initPanel = function() {
+        this.panelIsLockedOpen = false;
+        this.panelIsOpen = false;
 
+        this.initPanel = function() {
+            
         }
 
         this._nextApp = function() {

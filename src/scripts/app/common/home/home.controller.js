@@ -1,20 +1,16 @@
 export default class HomeController {
 
-    constructor($rootScope, $scope, $timeout) {
+    constructor($rootScope, $scope, $mdSidenav, $timeout) {
         'ngInject';
 
 
-        $scope.initHome = () => {
-            console.log('HomeController scope init');
-            console.log("should be ContentController", $scope.$parent);
+        this.initHome = () => {
+            console.log('HomeController init');
+            $timeout(() => {
+                $scope.$parent.$ctrl.showBottomPanel();
+                console.log($mdSidenav('sidenavRight'));
+            })
 
-            $rootScope.viewname = 'home';
-
-            if (!$rootScope.showBottom) {
-                $timeout(function() {
-                    $rootScope.showBottom = true;
-                }, 200);
-            }
         }
 
     }

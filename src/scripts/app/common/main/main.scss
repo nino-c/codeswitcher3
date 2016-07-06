@@ -1,3 +1,5 @@
+$clear-white: rgba(250,250,250,0.7);
+// $clear-grey: rgba(200,200,200,0.7);
 
 .panel-bottom {
     position: fixed;
@@ -8,14 +10,20 @@
     height: auto;
 }
 
-md-bottom-sheet {
-    background-color: rgba(250,250,250,0.7) !important;
+md-bottom-sheet, md-content {
+    background-color: $clear-white !important;
+    //padding-bottom: 0px;
 }
 
 button, a {
     md-icon {
         margin-top: -3px;
     }
+}
+
+md-dialog md-dialog-content {
+    padding: 0px;
+    margin: 0px;
 }
 
 .md-button, button, md-button {
@@ -44,6 +52,20 @@ button, a {
         transform-origin: center;;
         opacity: 0.7;
     }
+}
+
+.dialog-toolbar {
+    position: static !important;
+}
+
+.CodeMirror {
+  height: auto;
+}
+.codemirror-gutters, .CodeMirror-gutter {
+    width: 13px;
+}
+.inDialog pre {
+    margin-left: 25px;
 }
 
 .app-titles {
@@ -81,4 +103,13 @@ button, a {
           position: absolute;
         }
     }
+}
+
+
+.floating-panel {
+    background-color: rgba(250,250,250,0.85) !important;
+    position: absolute;
+    margin: 2em;
+    top: 50px;
+    padding: 1.5em;
 }

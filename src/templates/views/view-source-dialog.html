@@ -1,8 +1,6 @@
-<!-- style="width: 80%; height: 80%; margin: auto;"   -->
-<md-dialog aria-label="View Source" ng-init="initialize()">
-  <!-- <form> -->
+<md-dialog aria-label="View Source" ng-init="ctrl.initialize()">
 
-    <md-toolbar layout-wrap>
+    <md-toolbar class="dialog-toolbar" md-whiteframe="2" layout-wrap>
       <div class="md-toolbar-tools">
         <h2 class="md-primary" flex="grow">Source Code</h2>
         <span flex="grow"></span>
@@ -15,15 +13,14 @@
 
     <md-dialog-content>
 
-      <!-- <h4>{{ app.title }}</h4> -->
       <md-content>
-        <ui-codemirror ui-codemirror="{onLoad:codemirrorLoaded}"
-            ui-codemirror-opts="cmOptions" class="inDialog"
-            ng-model="app.source"
+        <div ui-codemirror="{onLoad:ctrl.codemirrorLoaded}"
+            ui-codemirror-opts="ctrl.cmOptions" class="inDialog"
+            ng-model="ctrl.app.source"
             name="source">
-        </ui-codemirror>
+        </div>
       </md-content>
 
     </md-dialog-content>
-  <!-- </form> -->
+
 </md-dialog>

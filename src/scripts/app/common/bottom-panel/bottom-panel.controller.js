@@ -13,16 +13,25 @@ export default class BottomPanelController {
 
         this.actions = [
             //{label: 'Browse Apps', icon: 'apps', classes: ''},
-
             //{label: 'Snapshot', icon: 'photo_camera', classes: 'md-primary'},
-
-            {label: 'View source-code', icon: 'remove_red_eye_black', classes: ''},
-            {label: 'Edit App', icon: 'settings', classes: ''}
+            {label: 'Source',
+                icon: 'code',
+                classes: '',
+                click: '$rootScope.topScope.viewSource($event)'},
+            {label: 'View',
+                icon: 'remove_red_eye_black',
+                classes: '',
+                click: '$state.go(\'app.display\', {})'},
+            {label: 'Edit Seed',
+                icon: 'settings',
+                classes: '',
+                click: ''}
             // {label: 'Next App', icon: 'arrow_forward', classes: ''}
         ];
 
-        this.actionClicked = $index => {
-            $mdBottomSheet.hide(this.items[$index]);
+        this.actionClicked = ($event, $index) => {
+            console.log('click', this.actions[$index].click);
+            eval(this.actions[$index].click);
         }
 
     }

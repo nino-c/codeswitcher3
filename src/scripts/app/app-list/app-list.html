@@ -58,7 +58,7 @@
             </div>
         </div>
 
-        <md-divider class="top" ng-show="!ctrl.loading"></md-divider>
+        <!-- <md-divider class="top" ng-show="!ctrl.loading"></md-divider> -->
 
         <div layout="column" ng-show="ctrl.loading">
             <md-progress-linear md-mode="indeterminate"></md-progress-linear>
@@ -73,46 +73,38 @@
 
             <div class="spacer"></div>
 
-            <div layout-gt-xs="row" layout-xs="column">
-                <div flex-gt-xs="50">
-                    <div layout="row" layout-align="center center">
-                        <img src="{{ app.owner.avatar }}" class="avatar" />
-                        by {{ app.owner.name }}
-                    </div>
-                    <div class="info">
-                        <div class="label-left">Author:</div>
-                        {{ app.owner.name }}
-                    </div>
-                    <div class="info">
-                        <div class="label-left">Category:</div>
-                        {{ app.category }}
-                    </div>
-                    <div class="info">
-                        <div class="label-left">Views:</div>
-                        {{ app.popularity }}
-                    </div>
-                    <div class="info">
-                        <div class="label-left">Created:</div>
-                        {{ app.created }}
-                    </div>
-
-                    <div class="caption">
-                        <br />
-                        <p>{{ app.description | truncateText:400 }}</p>
-                    </div>
-
-                    <spacer hide-gt-xs />
-
+            <div>
+                <!-- <div class="info">
+                    <div class="label-left">Author:</div>
+                    {{ app.owner.name }}
                 </div>
-                <div flex-gt-xs="5"></div>
-                <div flex-gt-xs="45">
-                    <md-grid-list md-cols="3" md-row-height="1:1" md-gutter="2px">
-                        <md-grid-tile ng-repeat="im in app.images | limit:9">
+                <div class="info">
+                    <div class="label-left">Category:</div>
+                    {{ app.category }}
+                </div> -->
+                <!-- <div class="info">
+                    <div class="label-left">Views:</div>
+                    {{ app.popularity }}
+                </div>
+                <div class="info">
+                    <div class="label-left">Created:</div>
+                    {{ app.created }}
+                </div> -->
+
+                <div>
+                    <md-grid-list md-cols="2" md-row-height="1:1" md-gutter="2px">
+                        <md-grid-tile ng-repeat="im in app.images | limit:4">
                             <div>
-                                <img src="/media/{{ im | thumbnail:125 }}" class="thumbnail-lg" />
+                                <img src="/media/{{ im | thumbnail:125 }}"
+                                    class="thumbnail-tiny" md-whiteframe="1" />
                             </div>
                         </md-grid-tile>
                     </md-grid-list>
+                </div>
+
+                <div class="caption">
+                    <br />
+                    <p>{{ app.description | truncateText:400 }}</p>
                 </div>
             </div>
 

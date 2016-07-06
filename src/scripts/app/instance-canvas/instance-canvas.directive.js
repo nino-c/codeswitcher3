@@ -77,7 +77,7 @@ let PaperscriptCanvas = ($compile) => {
     return {
         restrict: 'E',
         link: (scope, element, attrs) => {
-            element.html('<canvas id="paperscript-canvas" class="canvas-fullscreen" resize="true" '
+            element.html('<canvas id="bg-canvas" class="canvas-fullscreen" resize="true" '
                 + ' ng-click="window.clickHandler($event)"'
                 + ' keepalive="true"></canvas>'
                 + '<script type="text/paperscript" canvas="bg-canvas" src="'

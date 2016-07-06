@@ -3,10 +3,13 @@
 *	one and only <canvas> element, for bg and apps
 */
 
+//import {uiCodemirrorDirective} from 'angular-ui-codemirror';
+
 export default class MainController {
 
     constructor($rootScope, $scope, $location, $timeout, $window,
-        $state, $mdBottomSheet, $mdDialog, $mdSidenav, $log, authentication) {
+        $state, $mdBottomSheet, $mdDialog, $mdSidenav, $log,
+        authentication) {
 		'ngInject';
 
         $rootScope.topScope = this;
@@ -28,7 +31,6 @@ export default class MainController {
                     this.setCurrentInstance( this.featuredApps[this.currentInstanceIndex][0] );
                 })
             }
-            this.showBottomPanel();
         }
 
 		this.setCurrentInstance = (id) => {
@@ -46,31 +48,9 @@ export default class MainController {
                 controller: 'BottomPanelController',
                 controllerAs: 'ctrl',
                 clickOutsideToClose: true,
-                escapeToClose: true,
+                escapeToClose: false,
                 disableBackdrop: true,
             });
-        }
-
-        $rootScope.$watch('stateData', stateData => {
-            console.log('stateData', stateData);
-            if (stateData.viewname == 'app-list') {
-                console.log('SNR', $mdSidenav('sidenavRight'));
-                $log.debug($mdSidenav('sidenavRight'));
-                $mdSidenav('sidenavRight').toggle().then(() => {
-                    $log.debug('sidenav UP for app-list');
-                })
-            }
-        })
-
-        this.browseApps = () => {
-            // $rootScope.showOnPanel({
-            //     templateUrl: '/templates/app-list/app-list.html',
-            //     controller: 'AppListController',
-            //     controllerAs: 'ctrl',
-            //     clickOutsideToClose: true,
-            //     escapeToClose: true,
-            //     disableBackdrop: true,
-            // });
         }
 
         this.logout = () => {
@@ -98,31 +78,31 @@ export default class MainController {
             });
 
             function ViewSourceDialog($scope, $mdDialog, app) {
-
-                $scope.initialize = function() {
+                this.initialize = function() {
 
                     var lang = app.scriptType.split('text/').join('');
                     if (lang == 'paperscript') { lang = 'javascript'; }
 
-                    $scope.cmOptions = {
+                    this.cmOptions = {
                         lineWrapping: true,
                         lineNumbers: true,
                         indentWithTabs: true,
                         viewportMargin: Infinity,
+                        disableInput: false,
                         mode: lang,
                         matchBrackets: true,
                         theme: "mdn-like",
                         gutters: ['codemirror-gutters']
                     }
 
-                    $scope.codemirrorLoaded = (_editor) => {
+                    this.codemirrorLoaded = (_editor) => {
                         _editor.setOption('mode', 'javascript');
                         console.log(_editor);
 
                     }
 
-                    console.log('cmOpt', $scope.cmOptions);
-                    $scope.app = app;
+                    console.log('cmOpt', this.cmOptions);
+                    this.app = app;
                 }
 
                 this.closeDialog = function() {

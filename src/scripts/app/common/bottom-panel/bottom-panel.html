@@ -18,12 +18,12 @@
 
         <div flex="grow">&nbsp;</div>
 
-        <div flex="none">
-            <md-button class="{{ action.classes }}"
-                ng-click="listItemClick($index)"
+        <div flex="none" layout="row" layout-align="end center">
+            <div layout="column" class="icon-button"
+                ng-click="ctrl.actionClicked($event, $index)"
                 ng-repeat="action in ctrl.actions">
                 <md-icon md-svg-src="{{ action.icon }}"></md-icon>
-                <span class="md-grid-text">{{ action.label }}</span>
+                <span class="md-grid-text" hide-xs>{{ action.label }}</span>
             </md-button>
         </div>
 

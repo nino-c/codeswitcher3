@@ -14,7 +14,7 @@ DEBUG = False
 ROOT_DIR = dirname(dirname(dirname(abspath(__file__))))
 BASE_DIR = dirname(dirname(abspath(__file__)))
 LOGFILE_ROOT = join(dirname(BASE_DIR), 'logs')
-MEDIA_ROOT = join(BASE_DIR, 'build', 'media')
+MEDIA_ROOT = join(BASE_DIR, 'website', 'media')
 MEDIA_URL = "/media/"
 ANGULAR_APP_DIR = join(ROOT_DIR, 'src')
 
