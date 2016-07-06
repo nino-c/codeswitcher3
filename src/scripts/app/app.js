@@ -31,6 +31,8 @@ import Complex from 'complex';
 import CodeMirror from 'codemirror';
 //import CoffeeScript from 'coffee-script';
 //import MathJax from 'mathjax';
+import math from 'mathjs';
+
 
 
 window.app = angular.module('app', [
@@ -211,6 +213,7 @@ window.app = angular.module('app', [
         //$window.CoffeeScript = CoffeeScript;
         $window._ = _;
         $window.$ = jQuery;
+        $window.math = math;
 
 
         $.ajaxPrefilter(function( options ) {

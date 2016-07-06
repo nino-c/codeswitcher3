@@ -71,25 +71,44 @@ let Colorbox = () => {
     }
 }
 
-let PaperscriptCanvas = ($compile) => {
+let PaperscriptCanvas = ($compile, $http) => {
     'ngInject';
 
     return {
         restrict: 'E',
         link: (scope, element, attrs) => {
-            element.html('<canvas id="bg-canvas" class="canvas-fullscreen" resize="true" '
-                + ' ng-click="window.clickHandler($event)"'
-                + ' keepalive="true"></canvas>'
-                + '<script type="text/paperscript" canvas="bg-canvas" src="'
-                + attrs.source +'"></script>');
-            $compile(element.contents())(scope);
-            paper.PaperScript.load();
+
+            // load script
+            let script = null;
+            $http.get(attrs.source).then(response => {
+                console.log('RESPONSE', response);
+                script = response.data;
+
+                let compiledScript = traceur.Compiler.script(script);
+                console.log('***COMPILED SCRIPT', compiledScript);
+
+                element.html('<canvas id="bg-canvas" class="canvas-fullscreen" resize="true" '
+                    + ' ng-click="window.clickHandler($event)"'
+                    + ' keepalive="true"></canvas>'
+                    + '<script type="text/paperscript" canvas="bg-canvas">'
+                    + compiledScript
+                    + '</script>');
+                $compile(element.contents())(scope);
+                paper.PaperScript.load();
+
+
+            }, response => {
+                console.log('ERROR RESPONSE', response);
+                element.html('<div class="error">Could not load script ' + attrs.source + '</div>');
+                $compile(element.contents())(scope);
+            })
+
         }
     }
 }
 
 
-let AppInstanceCanvas = ($rootScope, $compile, $state, api) => {
+let AppInstanceCanvas = ($rootScope, $compile, $state, InstanceService) => {
     'ngInject';
 
     return {
@@ -210,7 +229,7 @@ let AppInstanceCanvas = ($rootScope, $compile, $state, api) => {
 
                 if ($rootScope.topScope.canvasLoadConfig.loadFromServer) {
                     console.log('EXEC directive, load');
-                    api.InstanceService.get({
+                    InstanceService.get({
                             id: parseInt(instanceId)
                         })
                         .$promise.then(function(instance) {

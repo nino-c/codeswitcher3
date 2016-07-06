@@ -75,6 +75,7 @@
     "coffee-script": "^1.10.0",
     "complex": "^3.0.1",
     "debug": "^2.2.0",
+    "es6-module-loader": "^0.17.11",
     "fs": "0.0.2",
     "gsap": "^1.18.2",
     "ismobilejs": "^0.3.9",
@@ -84,6 +85,7 @@
     "normalize.css": "^3.0.3",
     "numeric": "^1.2.6",
     "paper": "^0.9.25",
+    "traceur": "0.0.111",
     "ua-parser-js": "^0.7.10",
     "underscore": "^1.8.3"
   },

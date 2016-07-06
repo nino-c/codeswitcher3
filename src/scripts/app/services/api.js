@@ -1,56 +1,72 @@
 import 'angular';
 import 'angular-resource';
-//import config from './config';
+import config from '../config';
 
 
-export default class API {
-    constructor($resource, $rootScope, config) {
+function createResourceService(url, params, update) {
+    let actions = update ? { update: { method: 'PUT' }} : {};
+    let func = function($resource, config) {
         'ngInject';
-
-        this.config = config;
-        this.token = localStorage.getItem(this.config.AUTH_KEY);
-        $rootScope.apitest = this.endpointUrl('/api/instances/906');
-
-        this.AppService = $resource(this.endpointUrl('/api/apps/:id/'), {id:'@id'}, {
-            update: {
-                method: 'PUT'
-            }
-        });
-
-        this.AppServiceMinimal = $resource(this.endpointUrl('/api/apps-minimal/:id/'), {id:'@id'}, {
-            update: {
-                method: 'PUT'
-            },
-        });
-
-        this.InstanceService = $resource(this.endpointUrl('/api/instances/:id/'), {id:'@id'}, {
-            update: {
-                method: 'PUT'
-            }
-        });
-
-        this.OrderedInstanceService = $resource(this.endpointUrl('/api/instances-ordered/:id/'), { id:'@id'});
-
-        this.CodeModuleService = $resource(this.endpointUrl('/api/code_modules/:id/'), {id:'@id'}, {
-            update: {
-                method: 'PUT'
-            }
-        });
-
-        this.CategoryService = $resource(this.endpointUrl('/api/categories/:id/'), {id:'@id'}, {
-            update: {
-                method: 'PUT'
-            }
-        });
-
-        this.CategoryWithApps = $resource(this.endpointUrl('/api/categories-with-apps/:id/'), {id:'@id'});
-
+        return $resource(`${config.ENDPOINT}${url}`, params, actions);
     }
-
-    endpointUrl(url) {
-        return `${this.config.ENDPOINT}${url}`;
-    }
+    return func;
 }
+
+let AppService = createResourceService('/api/apps/:id/', {id:'@id'}, true);
+let AppServiceMinimal = createResourceService('/api/apps-minimal/:id/', {id:'@id'}, true);
+let InstanceService = createResourceService('/api/instances/:id/', {id:'@id'}, true);
+let OrderedInstanceService = createResourceService('/api/instances-ordered/:id/', {id:'@id'}, false);
+let CodeModuleService = createResourceService('/api/code_modules/:id/', {id:'@id'}, true);
+
+export {AppService, AppServiceMinimal, InstanceService, OrderedInstanceService, CodeModuleService};
+
+// export default class API {
+//     constructor($resource, $rootScope, config) {
+//         'ngInject';
+//
+//         this.config = config;
+//         this.token = localStorage.getItem(this.config.AUTH_KEY);
+//
+//         this.AppService = $resource(this.endpointUrl('/api/apps/:id/'), {id:'@id'}, {
+//             update: {
+//                 method: 'PUT'
+//             }
+//         });
+//
+//         this.AppServiceMinimal = $resource(this.endpointUrl('/api/apps-minimal/:id/'), {id:'@id'}, {
+//             update: {
+//                 method: 'PUT'
+//             },
+//         });
+//
+//         this.InstanceService = $resource(this.endpointUrl('/api/instances/:id/'), {id:'@id'}, {
+//             update: {
+//                 method: 'PUT'
+//             }
+//         });
+//
+//         this.OrderedInstanceService = $resource(this.endpointUrl('/api/instances-ordered/:id/'), { id:'@id'});
+//
+//         this.CodeModuleService = $resource(this.endpointUrl('/api/code_modules/:id/'), {id:'@id'}, {
+//             update: {
+//                 method: 'PUT'
+//             }
+//         });
+//
+//         this.CategoryService = $resource(this.endpointUrl('/api/categories/:id/'), {id:'@id'}, {
+//             update: {
+//                 method: 'PUT'
+//             }
+//         });
+//
+//         this.CategoryWithApps = $resource(this.endpointUrl('/api/categories-with-apps/:id/'), {id:'@id'});
+//
+//     }
+//
+//     endpointUrl(url) {
+//         return `${this.config.ENDPOINT}${url}`;
+//     }
+// }
 
 // let instanceFactory = function($http) {
 //     'ngInject';

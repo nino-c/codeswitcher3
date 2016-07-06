@@ -1,6 +1,6 @@
 export default class AppListController {
     constructor($rootScope, $scope, $timeout, $location, $window,
-        $mdBottomSheet, $mdSidenav, api) {
+        $mdBottomSheet, $mdSidenav, AppServiceMinimal) {
         'ngInject';
 
         this.showSearch = false;
@@ -18,7 +18,7 @@ export default class AppListController {
 
         this.initAppList = function() {
             console.log('AppList scope init', this.$parent);
-            api.AppServiceMinimal.query().$promise.then(apps => {
+            AppServiceMinimal.query().$promise.then(apps => {
                 this.apps = apps;
                 this.loading = false;
             });

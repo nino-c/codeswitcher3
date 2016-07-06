@@ -116,7 +116,9 @@ if (argv.dist) {
     //  "node_modules/coffee-script/lib/coffee-script/browser.js",
      "node_modules/codemirror/addon/edit/matchbrackets.js",
      "node_modules/codemirror/mode/javascript/javascript.js",
-     "node_modules/codemirror/mode/coffeescript/coffeescript.js"
+     "node_modules/codemirror/mode/coffeescript/coffeescript.js",
+     "node_modules/traceur/bin/traceur.js",
+     "node_modules/es6-module-loader/dist/es6-module-loader-dev.js"
  ];
 
  // gulp.task('vendorJS', function() {
