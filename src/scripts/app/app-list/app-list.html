@@ -69,7 +69,7 @@
 
             <div class="section-title">{{ app.title }}</div>
             <div class="text-muted section-subtitle"
-            ng-if="app.subtitle != ''">{{ app.subtitle }}</div>
+                ng-if="app.subtitle != ''">{{ app.subtitle }}</div>
 
             <div class="spacer"></div>
 
@@ -92,8 +92,8 @@
                 </div> -->
 
                 <div>
-                    <md-grid-list md-cols="2" md-row-height="1:1" md-gutter="2px">
-                        <md-grid-tile ng-repeat="im in app.images | limit:4">
+                    <md-grid-list md-cols="3" md-row-height="1:1" md-gutter="2px">
+                        <md-grid-tile ng-repeat="im in app.images | limit:9">
                             <div>
                                 <img src="/media/{{ im | thumbnail:125 }}"
                                     class="thumbnail-tiny" md-whiteframe="1" />
@@ -103,7 +103,6 @@
                 </div>
 
                 <div class="caption">
-                    <br />
                     <p>{{ app.description | truncateText:400 }}</p>
                 </div>
             </div>

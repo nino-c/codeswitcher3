@@ -1,0 +1,25 @@
+.spacer {
+  height: 10px;
+}
+
+.overlay-item {
+    position: absolute;
+    display: none;
+    padding: 10px;
+    color: rgba(220,220,220,0.9);
+}
+
+.overlay-bg {
+    background-color: transparent;
+    cursor: pointer;
+    &:hover {
+        background-color: rgba(25,25,25,0.95);
+        img {
+            opacity: 0.4;
+        }
+        .overlay-item {
+            position: absolute;
+            display: block;
+        }
+    }
+}

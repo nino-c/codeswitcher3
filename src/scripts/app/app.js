@@ -16,6 +16,7 @@ import './services';
 import './filters';
 import './common';
 import './app-list';
+import './app-editor';
 //import './instance-information';
 import './app-display';
 import './instance-tools';
@@ -53,6 +54,7 @@ window.app = angular.module('app', [
         'app.applist',
         //'app.instanceinformation',
         'app.appdisplay',
+        'app.editor',
         'app.instancecanvas'
 
     ]).value('ui.config', {
@@ -177,9 +179,13 @@ window.app = angular.module('app', [
             })
             .state('app.edit', {
                 url: '/{id:[0-9]+}/edit/',
-                templateUrl: '/templates/views/app-editor.html',
-                controller: 'AppEditorController',
-                controllerAs: 'ctrl',
+                views: {
+                    'floating-panel@app': {
+                        templateUrl: '/templates/app-editor/app-editor.html',
+                        controller: 'AppEditorController',
+                        controllerAs: 'ctrl'
+                    }
+                },
                 data: {
                     viewname: 'app-edit'
                 }

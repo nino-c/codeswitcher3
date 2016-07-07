@@ -1,7 +1,8 @@
 
 export default class AppDisplayController {
     constructor($rootScope, $scope, $stateParams, $location, $http, $state,
-        $window, $mdToast, $timeout, api, config) {
+        $window, $mdToast, $timeout, config, AppServiceMinimal,
+        OrderedInstanceService, InstanceService) {
         'ngInject';
 
         this.instances = [];
@@ -9,7 +10,7 @@ export default class AppDisplayController {
         this.loadingInstances = true;
         $rootScope.showBottom = false;
 
-        api.AppServiceMinimal.get({id:$stateParams.id})
+        AppServiceMinimal.get({id:$stateParams.id})
             .$promise.then(app_min => {
 
                 this.app = app_min;
@@ -17,7 +18,7 @@ export default class AppDisplayController {
 
                 if (this.app.instance_count == 0) return;
 
-                api.OrderedInstanceService.query({id:this.app.id})
+                OrderedInstanceService.query({id:this.app.id})
                     .$promise.then(instances => {
 
                         _.each(instances, inst => {
