@@ -8,7 +8,6 @@ export default class HomeController {
             console.log('HomeController init');
             $timeout(() => {
                 $scope.$parent.$ctrl.showBottomPanel();
-                console.log($mdSidenav('sidenavRight'));
             })
 
         }

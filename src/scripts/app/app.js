@@ -6,6 +6,11 @@ import 'angular-resource';
 import 'angular-cookies';
 import 'angular-bootstrap';
 import 'angular-animate';
+import 'angular-sanitize';
+
+
+//import {ionic} from './ionic-angular/ionic';
+//import {IonicModule} from './ionic-angular/ionic-angular';
 
 // module was altered -- just added dependency injection
 import './ui.codemirror/ui.codemirror';
@@ -19,6 +24,7 @@ import './app-list';
 import './app-editor';
 //import './instance-information';
 import './app-display';
+import './instance';
 import './instance-tools';
 import './instance-canvas'
 import './login';
@@ -28,7 +34,6 @@ import jQuery from 'jquery';
 import {_} from 'underscore';
 
 import Complex from 'complex';
-//import Babel from  'babel-standalone';
 import CodeMirror from 'codemirror';
 //import CoffeeScript from 'coffee-script';
 //import MathJax from 'mathjax';
@@ -37,11 +42,13 @@ import math from 'mathjs';
 
 
 window.app = angular.module('app', [
-        'ui.router',
+        //'ionic',
         'ngAnimate',
         'ngMaterial',
         'ngResource',
         'ngCookies',
+        'ngSanitize',
+        'ui.router',
         'ui.codemirror',
 
         'app.common',
@@ -55,7 +62,8 @@ window.app = angular.module('app', [
         //'app.instanceinformation',
         'app.appdisplay',
         'app.editor',
-        'app.instancecanvas'
+        'app.instancecanvas',
+        'app.instance'
 
     ]).value('ui.config', {
 
@@ -120,12 +128,12 @@ window.app = angular.module('app', [
                         templateUrl: '/templates/common/home/home.html',
                         controller: 'HomeController',
                         controllerAs: 'ctrl'
-                    },
-                    'bottom-panel@app': {
-                        templateUrl: '/templates/common/bottom-panel/bottom-panel.html',
-                        controller: 'BottomPanelController',
-                        controllerAs: 'ctrl'
                     }
+                    // 'bottom-panel@app': {
+                    //     templateUrl: '/templates/common/bottom-panel/bottom-panel.html',
+                    //     controller: 'BottomPanelController',
+                    //     controllerAs: 'ctrl'
+                    // }
                     // 'floating-panel@app': {
                     //     templateUrl: '/templates/instance-information/instance-information.html',
                     //     controller: 'InstanceInformationController',
@@ -193,11 +201,11 @@ window.app = angular.module('app', [
             .state('app.instance', {
                 url: '/{app:[0-9]+}/{id:[0-9]+}/',
                 views: {
-                    'panel-buttons@app': {
-                        templateUrl: '/templates/views/panel.button-bar.instance.html'
-                    },
-                    'panel-content@app': {
-                        templateUrl: '/templates/views/app-instance.html',
+                    // 'panel-buttons@app': {
+                    //     templateUrl: '/templates/views/panel.button-bar.instance.html'
+                    // },
+                    '': {
+                        templateUrl: '/templates/instance/instance.html',
                         controller: 'AppInstanceController',
                         controllerAs: 'ctrl'
                     }
@@ -210,8 +218,12 @@ window.app = angular.module('app', [
         $resourceProvider.defaults.stripTrailingSlashes = false;
 
     })
-    .run(function($rootScope, $location, $http, $cookies, $timeout, $mdToast, $window,
-        $document, $mdBottomSheet, authentication) {
+    .run(function($rootScope, $location, $http, $cookies, $timeout,
+        $mdToast, $window, $mdBottomSheet, authentication) {
+
+        // $ionicPlatform.ready(function() {
+        //     console.log('IONIC ready');
+        // });
 
         $window.Complex = Complex;
         //$window.MathJax = MathJax;

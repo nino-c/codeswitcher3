@@ -1,0 +1,37 @@
+.spacer {
+  height: 10px; }
+
+.overlay-item {
+  position: absolute;
+  display: none;
+  padding: 10px;
+  color: rgba(220, 220, 220, 0.9);
+  overflow: hidden;
+  height: 100%; }
+
+.overlay-bg {
+  background-color: transparent;
+  cursor: pointer; }
+  .overlay-bg:hover {
+    background-color: rgba(25, 25, 25, 0.95); }
+    .overlay-bg:hover img {
+      opacity: 0.4; }
+    .overlay-bg:hover .overlay-item {
+      position: absolute;
+      display: inline-block; }
+
+.seedline {
+  display: block; }
+  .seedline strong {
+    display: inline-block;
+    margin-right: 6px; }
+
+.seed-list-value {
+  display: inline-block; }
+  .seed-list-value span .list-value {
+    display: inline; }
+  .seed-list-value span .math {
+    display: inline;
+    letter-spacing: initial; }
+
+/*# sourceMappingURL=app-display.css.map */

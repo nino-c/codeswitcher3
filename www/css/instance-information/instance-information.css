@@ -1,0 +1,29 @@
+.instance-information {
+  position: fixed;
+  background-color: rgba(250, 250, 250, 0.6);
+  bottom: 0px;
+  right: 0px;
+  padding: 1em;
+  width: 70%;
+  margin: 2.5em;
+  text-align: right;
+  letter-spacing: 0.2em; }
+  .instance-information .app-title-header:after {
+    content: ":";
+    position: absolute; }
+  .instance-information .app-title-text {
+    font-size: 1.6em;
+    line-height: 2.1em;
+    color: rgba(30, 30, 30, 0.7); }
+    .instance-information .app-title-text:before {
+      content: open-quote; }
+    .instance-information .app-title-text:after {
+      content: close-quote;
+      position: absolute; }
+  .instance-information .app-subtitle-text {
+    font-size: 1.2em;
+    color: rgba(100, 100, 100, 0.6); }
+    .instance-information .app-subtitle-text:after {
+      position: absolute; }
+
+/*# sourceMappingURL=instance-information.css.map */

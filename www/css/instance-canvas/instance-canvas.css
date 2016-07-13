@@ -1,0 +1,36 @@
+.fullscreen {
+  z-index: -1000;
+  display: block;
+  position: fixed;
+  left: 0px;
+  width: 100%;
+  background: transparent;
+  padding: 0px;
+  top: 0px;
+  height: 100%; }
+
+.inline-canvas {
+  position: absolute;
+  border: 1px solid #ccc;
+  top: 100px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  height: calc(100% - 150px); }
+
+#bg-canvas {
+  top: 0px;
+  height: 100%;
+  mix-blend-mode: multiply; }
+
+.feature-display {
+  position: fixed;
+  color: rgba(50, 50, 50, 0.8);
+  top: 90px;
+  left: 30px;
+  padding: 10px;
+  background-color: rgba(240, 240, 240, 0.3);
+  border: 1px solid #eeeeee;
+  border-radius: 2px; }
+
+/*# sourceMappingURL=instance-canvas.css.map */

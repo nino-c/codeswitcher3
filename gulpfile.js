@@ -19,11 +19,13 @@ var del                = require('del'),
     gulp               = require('gulp'),
     gutil              = require('gulp-util'),
     concat             = require('gulp-concat'),
+    rename             = require('gulp-rename'),
     browserSync        = require('browser-sync').create(),
     historyApiFallback = require('connect-history-api-fallback'),
     uglify             = require('gulp-uglify'),
     sass               = require('gulp-sass'),
     sassGlob           = require('gulp-sass-glob'),
+    minifyCss          = require('gulp-minify-css'),
     postcss            = require('gulp-postcss'),
     assets             = require('postcss-assets'),
     autoprefixer       = require('autoprefixer'),
@@ -53,6 +55,8 @@ var del                = require('del'),
     rootFiles        = config.root,
     scssIncludePaths = config.scssIncludePaths,
     cssVendor        = config.cssVendor,
+    paths            = config.paths,
+    vendorJS         = config.vendorJS,
 
     // parse parameters
     argv = minimist(process.argv.slice(2), { boolean: true });
@@ -63,7 +67,7 @@ var del                = require('del'),
  *
  */
 
-var BUILD_DIR = 'website',
+var BUILD_DIR = 'www',
     AUTO_PREFIXER_RULES = ['last 2 versions'];
 
 /**
@@ -108,27 +112,18 @@ if (argv.dist) {
  */
 
 
- var vendorJS = [
-     "node_modules/paper/dist/paper-full.js",
-     "node_modules/underscore/underscore.js",
-     "node_modules/jquery/dist/jquery.js",
-     "node_modules/mathjax/MathJax.js",
-    //  "node_modules/coffee-script/lib/coffee-script/browser.js",
-     "node_modules/codemirror/addon/edit/matchbrackets.js",
-     "node_modules/codemirror/mode/javascript/javascript.js",
-     "node_modules/codemirror/mode/coffeescript/coffeescript.js",
-     "node_modules/traceur/bin/traceur.js",
-     "node_modules/es6-module-loader/dist/es6-module-loader-dev.js"
- ];
-
- // gulp.task('vendorJS', function() {
- //     compiler.run(createWebpackCb(cb));
- //     return browserify(vendorJS)
- //         .bundle()
- //         .pipe(source('extra.js'))
- //         .pipe(gulp.dest(BUILD_DIR + '/scripts/vendor.js'))
- // })
-
+ gulp.task('sass', function(done) {
+   gulp.src('./scss/ionic.app.scss')
+     .pipe(sass())
+     .on('error', sass.logError)
+     .pipe(gulp.dest('./www/css/'))
+     .pipe(minifyCss({
+       keepSpecialComments: 0
+     }))
+     .pipe(rename({ extname: '.min.css' }))
+     .pipe(gulp.dest('./www/css/'))
+     .on('end', done);
+ });
 
 gulp.task('browser-sync', function () {
     browserSync.init({
@@ -355,7 +350,6 @@ gulp.task('_root-files-build', function () {
         .pipe(gulpif(TASK_NOTIFICATION, notify({ message: 'Root files build completed.', onLast: true })));
 });
 
-// Copy root files
 gulp.task('_vendorJS-build', function () {
     return gulp.src(vendorJS)
         .pipe(gulp.dest(BUILD_DIR + '/scripts/'))
@@ -431,7 +425,7 @@ gulp.task('build', function (cb) {
 gulp.task('_watch', function () {
     gulp.watch('src/scss/**/*.scss', ['_css-build']);
 
-    gulp.watch(['src/templates/**/*.html', 'src/scripts/app/**/*.html'], ['_tpls-build']);
+    gulp.watch(['src/templates/**/*.html', 'src/app/**/*.html'], ['_tpls-build']);
 
     gulp.watch(rootFiles, ['_root-files-build']);
 

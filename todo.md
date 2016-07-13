@@ -1,3 +1,8 @@
+to start sunday:
+- webpack study
+- try yo m-ionic (uses angular 1)
+- review scope.$apply(), scope.$digest()
+
 
 # general mr. code-switcher mythology
 
@@ -7,6 +12,7 @@
 
 ## characters
 glasses the spicy node-flipper
+node-flipping group
 
 ----------------------------------------
 # philosophy
@@ -26,7 +32,6 @@ glasses the spicy node-flipper
 
 ## app-display
 - ordering of instance snapshots
-- speed up load more
 - instantiate
 
 ## instance-canvas
@@ -53,6 +58,12 @@ glasses the spicy node-flipper
 - add view source button on home page
   - home page becomes identical to instance page
 
+
+## packages
+### packages that have been replaced by other libraries, but still used (to remove after updating code)
+- underscore (=>lodash)
+- numeric (=>mathjs)
+- complex (=>mathjs)
 
 --------------------
 

@@ -1,0 +1,50 @@
+
+
+    <div layout-gt-xs="row" layout-xs="column"
+        layout-align-xs="space-between end"
+        layout-align="start center">
+
+        <md-button class="md-raised md-accent" flex="none"
+            ng-click="$ctrl.viewSource()" role="button">
+          <md-icon md-svg-src="/assets/img/icons/ic_remove_red_eye_black_24px.svg">remove_red_eye_black</md-icon>
+          <span class="button-label">View source-code</span>
+        </md-button>
+
+        <md-button class="md-raised md-primary"
+            ng-if="viewname == 'instance'"
+            ng-click="viewscope.snapshot()"
+            ng-if="userLoggedIn" role="button">
+          <md-icon md-svg-src="/assets/img/icons/ic_photo_camera_black_24px.svg">photo_camera</md-icon>
+          <span class="button-label">Snapshot</span>
+        </md-button>
+
+        <span flex="grow"></span>
+
+        <md-button class="md-raised button-small" flex="none"
+            ui-sref="app.applist" flex="none"
+            style="margin-left:0px;"
+            role="button"
+            class="button-small">
+            <md-icon layout-align="start center"z
+                md-font-set="material-icons">apps</md-icon>
+            <span>Browse Apps</span>
+        </md-button>
+
+        <!-- <md-button class="md-raised button-small" flex="none"
+            ng-click="$ctrl.nextApp()" flex="none"
+            style="margin-left:0px;"
+            role="button">
+            <span class="button-small">next</span>
+            <md-icon
+                md-font-set="material-icons"
+                class="icon-small">arrow_forward</md-icon>
+        </md-button> -->
+
+        <md-button class="md-raised button-small" flex="none"
+            ui-sref="app.instance({app:$ctrl.currentInstance.game.id, id:$ctrl.currentInstance.id})"
+            role="button" class="button-small">
+            <md-icon md-font-set="material-icons">settings</md-icon>
+            <span>Edit Seed</span>
+        </md-button>
+
+    </div>

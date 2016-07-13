@@ -13,8 +13,6 @@ module.exports = {
             _: "underscore/underscore.js",
             //$: "jquery/dist/jquery.js",
             MathJax: "mathjax/MathJax.js"
-            // "codemirror/addon/edit/matchbrackets.js",
-            // "codemirror/mode/javascript/javascript.js",
             //CoffeeScript: "coffee-script/lib/coffee-script/coffee-script.js"
         }
     },

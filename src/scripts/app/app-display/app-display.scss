@@ -7,6 +7,8 @@
     display: none;
     padding: 10px;
     color: rgba(220,220,220,0.9);
+    overflow:hidden;
+    height: 100%;
 }
 
 .overlay-bg {
@@ -19,7 +21,29 @@
         }
         .overlay-item {
             position: absolute;
-            display: block;
+            display: inline-block;
+        }
+    }
+}
+
+
+.seedline {
+    display: block;
+    strong {
+        display: inline-block;
+        margin-right: 6px;
+    }
+}
+
+.seed-list-value {
+    display: inline-block;
+    span {
+        .list-value {
+            display: inline;
+        }
+        .math {
+            display: inline;
+            letter-spacing: initial;
         }
     }
 }

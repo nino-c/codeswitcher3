@@ -1,0 +1,20 @@
+<!-- ng-class="{'panel':true, 'panel-bottom':viewname=='home',
+    'panel-main':viewname=='app-list',
+    'panel-side':viewname=='instance', 'slide-top':true}" -->
+<div ng-class="{'panel':true, 'slide-top':true,
+    'panel-bottom':stateData.viewname=='home',
+    'panel-main':stateData.viewname!='home'&&stateData.viewname!='instance',
+    'panel-side':stateData.viewname=='instance'}"
+    md-whiteframe="3" ng-init="initPanel()">
+
+    <md-content layout="column" layout-padding>
+
+        <div ui-view="panel-content"></div>
+        <div ui-view="panel-buttons"></div>
+
+        <!-- <spacer hide-short /> -->
+
+
+    </md-content>
+
+</div>

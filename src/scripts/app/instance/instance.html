@@ -1,0 +1,12 @@
+<md-content layout="row" ng-init="ctrl.initInstance()">
+    <h1>INSTANCE {{ ctrl.instanceId }}</h1>
+    <div flex>
+        <app-instance-canvas
+            position="inline"
+            current-instance-id="ctrl.instanceId">
+        </app-instance-canvas>
+    </div>
+    <div flex>
+        <instance-tools></instance-tools>
+    </div>
+</md-content>

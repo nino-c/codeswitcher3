@@ -116,11 +116,14 @@ let AppInstanceCanvas = ($rootScope, $compile, $state, InstanceService) => {
         scope: {
             currentInstanceId: '=',
             canvasLoadConfig: '=',
+            position: '='
         },
         link: ($scope, element, attrs) => {
 
             let execInstance = (instance) => {
+
                 console.log('execInstance', instance);
+
                 $scope.instance = instance;
                 $rootScope.topScope.currentInstance = instance;
                 $rootScope.$broadcast('on-set-current-instance');
@@ -129,14 +132,6 @@ let AppInstanceCanvas = ($rootScope, $compile, $state, InstanceService) => {
                 var seedStructure = JSON.parse(instance.game.seedStructure);
                 var seed = JSON.parse(instance.seed);
 
-                // if ($state.current.data.viewname == 'instance') {
-                //     $rootScope.viewscope.dialect = dialect;
-                //     $rootScope.viewscope.seedStructure = seedStructure;
-                //     $rootScope.viewscope.seed = seed;
-                // }
-
-                // prepare code to eval
-                // line-by-line for the system-generated part
                 var seedcodelines = [];
                 seedcodelines.push('var seed = ' + instance.seed + ';');
                 seedcodelines.push('var canvas = $("#bg-canvas");')
@@ -203,16 +198,24 @@ let AppInstanceCanvas = ($rootScope, $compile, $state, InstanceService) => {
                     source += "\n\nwindow.renderingDone()";
                 }
 
+                let stylename = 'fullscreen';
+                if (attrs.position == 'inline') {
+                    stylename = 'inline-canvas';
+                }
+
                 switch (dialect) {
                     case 'text/paperscript':
-                        element.html('<canvas id="bg-canvas"></canvas>' + '<script type="'
+                        element.html('<canvas id="bg-canvas" class="'
+                            + stylename + '"></canvas>' + '<script type="'
                             + dialect + '" canvas="bg-canvas">' + source + '</script>');
+                        console.log('$scope---', element.contents());
                         $compile(element.contents())($scope);
                         eval(seedcodelines);
                         paper.PaperScript.load();
                         break;
                     default:
-                        element.html('<canvas id="bg-canvas"></canvas>');
+                        element.html('<canvas id="bg-canvas" class="'
+                            + stylename + '"></canvas>');
                         $compile(element.contents())($scope);
                         eval(seedcodelines);
                         $window.Canvas = angular.element(element);

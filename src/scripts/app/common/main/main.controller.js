@@ -28,7 +28,9 @@ export default class MainController {
         this.init = () => {
             if ($state.current.name != 'app.instance') {
                 $timeout(() => {
-                    this.setCurrentInstance( this.featuredApps[this.currentInstanceIndex][0] );
+                    this.setCurrentInstance(
+                        this.featuredApps[this.currentInstanceIndex][0]
+                    );
                 })
             }
         }

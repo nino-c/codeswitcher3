@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'crispy_forms',
     'easy_thumbnails',
-
+    
     'srv.applications.common',
     'srv.applications.authentication',
     'srv.applications.users.apps.UsersConfig',
@@ -43,10 +43,10 @@ INSTALLED_APPS = [
     'srv.applications.game',
     'srv.applications.symbolic_math',
 ]
-
+#from srv.applications.common.middleware import *
 MIDDLEWARE_CLASSES = [
     'corsheaders.middleware.CorsMiddleware',
-
+    #'srv.applications.common.middleware.CORSMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -189,3 +189,7 @@ USE_TZ = True
 # CORS:
 # @see: https://github.com/ottoyiu/django-cors-headers
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = (
+    'localhost:8100'
+)
+CORS_ALLOW_CREDENTIALS = True

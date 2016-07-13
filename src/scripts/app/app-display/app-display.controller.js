@@ -1,7 +1,6 @@
-
 export default class AppDisplayController {
     constructor($rootScope, $scope, $stateParams, $location, $http, $state,
-        $window, $mdToast, $timeout, config, AppServiceMinimal,
+        $window, $mdToast, $mdBottomSheet, $timeout, config, AppServiceMinimal,
         OrderedInstanceService, InstanceService) {
         'ngInject';
 
@@ -10,7 +9,9 @@ export default class AppDisplayController {
         this.loadingInstances = true;
         $rootScope.showBottom = false;
 
-        AppServiceMinimal.get({id:$stateParams.id})
+        AppServiceMinimal.get({
+                id: $stateParams.id
+            })
             .$promise.then(app_min => {
 
                 this.app = app_min;
@@ -18,7 +19,9 @@ export default class AppDisplayController {
 
                 if (this.app.instance_count == 0) return;
 
-                OrderedInstanceService.query({id:this.app.id})
+                OrderedInstanceService.query({
+                        id: this.app.id
+                    })
                     .$promise.then(instances => {
 
                         _.each(instances, inst => {
@@ -36,7 +39,7 @@ export default class AppDisplayController {
                         $timeout(() => {
                             $rootScope.refreshMathJax();
                         })
-                });
+                    });
 
                 $http({
                     method: 'GET',
@@ -47,9 +50,9 @@ export default class AppDisplayController {
                     console.log('increment response', error);
                 });
 
-            }
-        );
+            });
 
+        $mdBottomSheet.hide();
 
         this.selectFirstInstance = function() {
             console.log('selectFirstInstance');
@@ -60,74 +63,79 @@ export default class AppDisplayController {
             }
         };
 
-          this.playApp = function() {
 
-          }
+        this.selectInstance = function(instance_id) {
+            console.log('INSTANCE', '/app/' + this.app.id + '/' + instance_id + '/');
+            //$location.path('/app/'+this.app.id+'/'+instance_id+'/');
+            $state.go('app.instance', {
+                app: this.app.id,
+                id: instance_id
+            })
+        };
 
-          this.selectInstance = function(instance_id) {
-              console.log('INSTANCE', '/app/'+this.app.id+'/'+instance_id+'/');
-              //$location.path('/app/'+this.app.id+'/'+instance_id+'/');
-              $state.go('app.instance', {app:this.app.id, id:instance_id})
-          };
+        this.instantiate = function() {
+            var req = {
+                method: 'GET',
+                url: config.ENDPOINT + '/game/app-instantiate/' + this.app.id + '/',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
 
-          this.instantiate = function() {
-              var req = {
-                  method: 'GET',
-                  url: config.ENDPOINT + '/game/app-instantiate/' + this.app.id + '/',
-                  headers: {
-                      'Content-Type': 'application/json'
-                  }
-              }
+            $http(req).then(function successCallback(response) {
 
-              $http(req).then(function successCallback(response) {
+                console.log(response);
 
-                  console.log(response);
+                if (response.data.id) {
 
-                  if (response.data.id) {
+                    $location.path('/instance/' + this.app.id + '/' + response.data.id + '/');
+                    $rootScope.toast("New instance created");
 
-                      $location.path('/instance/'+this.app.id+'/'+response.data.id+'/');
-                      $rootScope.toast("New instance created");
+                }
 
-                  }
+            }, function errorCallback(response) {
+                console.log('error', response)
+            });
 
-              }, function errorCallback(response) {
-                  console.log('error', response)
-              });
+        };
 
-          };
-
-          this.delete = function() {
-              if (confirm("Are you sure you want to delete this app?")) {
-                  AppService.$delete({id:this.app.id}).$promise.then(function(response) {
-                  // this.app = _.reject(
-                  //   this.app, function(a) {
-                  //     return a.id == this.app.id;
-                  //   })
-                  console.log(response);
+        this.delete = function() {
+            if (confirm("Are you sure you want to delete this app?")) {
+                AppService.$delete({
+                    id: this.app.id
+                }).$promise.then(function(response) {
+                    // this.app = _.reject(
+                    //   this.app, function(a) {
+                    //     return a.id == this.app.id;
+                    //   })
+                    console.log(response);
                 });
-              }
-          };
+            }
+        };
 
         this.deleteInstance = function($event, instance) {
 
-          $event.stopPropagation();
-          $event.preventDefault();
+            $event.stopPropagation();
+            $event.preventDefault();
 
-          if (confirm("Are you sure you want to delete this instance?")) {
+            if (confirm("Are you sure you want to delete this instance?")) {
 
-              InstanceService.remove({id:instance.id}, function(response) {
-                  console.log('deleted', response)
-                  this.app.instances = _.reject(
-                      this.app.instances, function(inst) {
-                      return inst.id == instance.id;
-                  });
-              })
+                InstanceService.remove({
+                    id: instance.id
+                }, function(response) {
+                    console.log('deleted', response)
+                    this.app.instances = _.reject(
+                        this.app.instances,
+                        function(inst) {
+                            return inst.id == instance.id;
+                        });
+                })
 
-          }
+            }
         };
 
         $window.renderingDone = function() {
-          console.log('renderingDone');
+            console.log('renderingDone');
         }
     }
 }

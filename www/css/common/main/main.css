@@ -1,0 +1,126 @@
+.panel-bottom {
+  position: fixed;
+  bottom: 0px;
+  padding: 0px 30px 80px 30px;
+  width: 100%;
+  height: auto; }
+
+md-content.md-default-theme, md-content {
+  background-color: transparent; }
+
+md-bottom-sheet {
+  background-color: rgba(250, 250, 250, 0.7) !important; }
+
+button md-icon, a md-icon {
+  margin-top: -3px; }
+
+md-card, md-card-content {
+  padding: 0px !important; }
+
+md-dialog md-dialog-content {
+  padding: 0px;
+  margin: 0px; }
+
+md-divider {
+  marign-top: 1.6em;
+  margin-bottom: 1.6em; }
+
+.md-scroll-mask {
+  z-index: 1; }
+
+.main-content {
+  z-index: 2; }
+
+.button-huge {
+  transform-origin: top left;
+  display: inline-block;
+  margin: 0px; }
+
+.button-small {
+  font-size: 10px;
+  font-weight: 300; }
+  .button-small md-icon {
+    transform: scale(0.75);
+    transform-origin: center;
+    opacity: 0.7; }
+
+.no-padding {
+  padding: 0px !important; }
+
+.dialog-toolbar {
+  position: static !important; }
+
+.CodeMirror {
+  height: auto; }
+
+.codemirror-gutters, .CodeMirror-gutter {
+  width: 13px; }
+
+.inDialog pre {
+  margin-left: 25px; }
+
+.app-titles {
+  text-align: right;
+  letter-spacing: 0.2em;
+  margin-bottom: 20px;
+  margin-top: 10px; }
+  .app-titles .app-title-header:after {
+    content: ":";
+    position: absolute; }
+  .app-titles .app-title-text {
+    font-size: 1.6em;
+    line-height: 2.1em;
+    color: rgba(30, 30, 30, 0.7); }
+    .app-titles .app-title-text:before {
+      content: open-quote; }
+    .app-titles .app-title-text:after {
+      content: close-quote;
+      position: absolute; }
+  .app-titles .app-subtitle-text {
+    font-size: 1.2em;
+    color: rgba(100, 100, 100, 0.6); }
+    .app-titles .app-subtitle-text:after {
+      position: absolute; }
+
+.floating-panel {
+  background-color: rgba(250, 250, 250, 0.7);
+  display: block;
+  width: inherit;
+  margin-left: 40px !important;
+  margin-right: 40px !important;
+  margin-top: 80px !important;
+  width: calc(100% - 80px);
+  padding: 1.5em;
+  font-size: 1.1em !important;
+  line-height: 1.62em !important; }
+  .floating-panel p:after {
+    height: 0.62em;
+    content: "";
+    display: block; }
+
+.thumbnail, .thumbnail-tiny, .thumbnail-med, .thumbnail-lg {
+  display: inline;
+  box-sizing: border-box;
+  padding: 2px;
+  margin: 2px 2px 2px 2px !important;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 0px;
+  transition: border .2s ease-in-out; }
+
+.nomargin, .thumbnail-lg {
+  margin: 0px 0px 0px 0px !important; }
+
+.thumbnail-tiny {
+  width: 80px;
+  height: 80px; }
+
+.thumbnail-med {
+  width: 100px;
+  height: 100px; }
+
+.thumbnail-lg {
+  width: 100%;
+  height: auto; }
+
+/*# sourceMappingURL=main.css.map */

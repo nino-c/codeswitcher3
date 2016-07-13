@@ -1,0 +1,19 @@
+<md-toolbar>
+    <div layout="row"
+        layout-align="start center"
+        layout-wrap>
+
+        <div class="toolbar-title"
+             flex ui-sref="app.home">Apps at an Exhibition</div>
+
+        <md-button class="md-button pull-right" flex="nogrow"
+            ng-cloak ui-sref="app.login"
+            ng-if="!userLoggedIn">Log in</md-button>
+
+        <md-button class="md-button pull-right" flex="nogrow"
+            ng-cloak ng-click="$ctrl.logout()"
+            ng-if="userLoggedIn">Log out</md-button>
+
+    </div>
+
+</md-toolbar>
